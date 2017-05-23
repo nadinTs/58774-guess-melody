@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Nadya Tsivina](https://up.htmlacademy.ru/ecmascript/2/user/58774).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Воронин](https://htmlacademy.ru/profile/id245996).
 
 ---
 
