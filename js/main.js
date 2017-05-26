@@ -5,17 +5,17 @@
   const template = document.querySelector(`template`);
   const templateContainer = `content` in template ? template.content : template;
   const screen = templateContainer.querySelectorAll(`section.main`);
-  const screenArr = [];
 
-  [].forEach.call(screen, function (div) {
-    screenArr.splice(0, 0, div);
-  });
-  const reversScreen = screenArr.splice(4, 1);
-  screenArr.splice(1, 0, reversScreen[0]);
+  const screenArr = Array.from(screen);
+  const screen2 = screenArr.splice(4, 1);
+  const screen3 = screenArr.splice(3, 1);
+
+  screenArr.splice(0, 0, screen2[0]);
+  screenArr.splice(2, 0, screen3[0]);
 
   let element = main.appendChild(screenArr[0]);
   let i = 0;
-  const changeScreen = function (event) {
+  function changeScreen(event) {
     if (event.altKey && event.keyCode === 39) {
       if (i < screenArr.length - 1) {
         i++;
@@ -25,7 +25,7 @@
       main.replaceChild(screenArr[i], element);
       element = screenArr[i];
     }
-  };
+  }
 
   document.body.onkeydown = changeScreen;
 })();
