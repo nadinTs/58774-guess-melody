@@ -1,11 +1,10 @@
 (function () {
-  'use strict';
 
-  const app = document.querySelector('div.app');
-  const main = app.querySelector('section.main');
-  const template = document.querySelector('template');
-  const templateContainer = 'content' in template ? template.content : template;
-  const screen = templateContainer.querySelectorAll('section.main');
+  const app = document.querySelector(`div.app`);
+  const main = app.querySelector(`section.main`);
+  const template = document.querySelector(`template`);
+  const templateContainer = `content` in template ? template.content : template;
+  const screen = templateContainer.querySelectorAll(`section.main`);
   const screenArr = [];
 
   [].forEach.call(screen, function (div) {
