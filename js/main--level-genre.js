@@ -5,7 +5,7 @@ const getElementFromTemplate = (template) => {
   return container;
 };
 
-const screenMainLevelGenre =`<section class="main main--level main--level-genre">
+const screenMainLevelGenre = `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>
     <form class="genre">
       <div class="genre-answer">
