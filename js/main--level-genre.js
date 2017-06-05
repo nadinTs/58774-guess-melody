@@ -1,9 +1,4 @@
-
-const getElementFromTemplate = (template) => {
-  const container = document.createElement(`div`);
-  container.innerHTML = template;
-  return container;
-};
+import getElementFromTemplate from './get--element-from-template';
 
 const screenMainLevelGenre = `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>

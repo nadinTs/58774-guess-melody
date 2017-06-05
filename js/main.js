@@ -1,9 +1,9 @@
 import welcome from './main--welcome';
-import changeScreen from './change--screen';
+import changeScreen from './changeScreen';
 
 const app = document.querySelector(`div.app`);
 const main = app.querySelector(`section.main`);
 
-const main.appendChild(welcome);
+main.appendChild(welcome);
 
 document.body.onkeydown = changeScreen;

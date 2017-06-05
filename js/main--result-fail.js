@@ -1,8 +1,4 @@
-const getElementFromTemplate = (template) => {
-  const container = document.createElement(`div`);
-  container.innerHTML = template;
-  return container;
-};
+import getElementFromTemplate from './get--element-from-template';
 
 const screenMainResultFail = `<section class="main main--result">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>

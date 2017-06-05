@@ -1,8 +1,4 @@
-const getElementFromTemplate = (template) => {
-  const container = document.createElement(`div`);
-  container.innerHTML = template;
-  return container;
-};
+import getElementFromTemplate from './get--element-from-template';
 
 const screenWelcome = `<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -15,5 +11,5 @@ const screenWelcome = `<section class="main main--welcome">
     </p>
   </section>`;
 
-const mainWelcome = getElementFromTemplate(screenWelcome);
-export default mainWelcome;
+const mainWelcome1 = getElementFromTemplate(screenWelcome);
+export default mainWelcome1;
