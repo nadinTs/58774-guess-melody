@@ -1,4 +1,6 @@
 import getElementFromTemplate from './get--element-from-template';
+import mainLevelGenre from './main--level-genre';
+import changeScreen from './changeScreen';
 
 const screenMainLevelArtist = `<section class="main main--level main--level-artist">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
@@ -48,5 +50,11 @@ const screenMainLevelArtist = `<section class="main main--level main--level-arti
   </section>`;
 
 const mainLevelArtist = getElementFromTemplate(screenMainLevelArtist);
-
+const callChangeScreen = () => {
+  changeScreen(mainLevelArtist, mainLevelGenre);
+};
+const answer = mainLevelArtist.querySelectorAll(`.main-answer-wrapper`);
+[].forEach.call(answer, function (div) {
+  div.onclick = callChangeScreen;
+});
 export default mainLevelArtist;

@@ -1,4 +1,12 @@
 import getElementFromTemplate from './get--element-from-template';
+import changeScreen from './changeScreen';
+import mainResulte from './main--result';
+import mainResulteFail from './main--result-fail';
+
+const resultArr = {
+  1: mainResulte,
+  2: mainResulteFail
+};
 
 const screenMainLevelGenre = `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>
@@ -31,6 +39,40 @@ const screenMainLevelGenre = `<section class="main main--level main--level-genre
     </form>
   </section>`;
 
+const getRandom = (max, min) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const mainLevelGenre = getElementFromTemplate(screenMainLevelGenre);
+const inputCheck = mainLevelGenre.querySelectorAll(`.genre-answer input`);
+
+const callChangeScreen = () => {
+  [].forEach.call(inputCheck, function (div) {
+    div.checked = false;
+  });
+  changeScreen(mainLevelGenre, resultArr[getRandom(2, 1)]);
+};
+
+const btnAnswerSend = mainLevelGenre.querySelector(`button.genre-answer-send`);
+btnAnswerSend.setAttribute(`disabled`, `disabled`);
+
+let j = 0;
+const addDisabled = (e) => {
+  if (e.target.checked) {
+    j++;
+  } else {
+    j--;
+  }
+  if (j > 0) {
+    btnAnswerSend.removeAttribute(`disabled`);
+  } else {
+    btnAnswerSend.setAttribute(`disabled`, `disabled`);
+  }
+};
+
+[].forEach.call(inputCheck, function (div) {
+  div.onclick = addDisabled;
+});
+btnAnswerSend.onclick = callChangeScreen;
 
 export default mainLevelGenre;

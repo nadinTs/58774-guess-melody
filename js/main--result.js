@@ -1,4 +1,6 @@
 import getElementFromTemplate from './get--element-from-template';
+import welcome from './main--welcome';
+import changeScreen from './changeScreen';
 
 const screenMainResult = `<section class="main main--result">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
@@ -10,4 +12,12 @@ const screenMainResult = `<section class="main main--result">
   </section>`;
 
 const mainResult = getElementFromTemplate(screenMainResult);
+const btnReturn = mainResult.querySelector(`.main-replay`);
+
+const callChangeScreen = () => {
+  changeScreen(mainResult, welcome);
+};
+
+btnReturn.onclick = callChangeScreen;
+
 export default mainResult;
