@@ -1,52 +1,18 @@
-import getElementFromTemplate from './get--element-from-template';
+import mainLevelGenre from './genre-level';
 import changeScreen from './changeScreen';
-import mainResulte from './main--result';
-import mainResulteFail from './main--result-fail';
+import resulte from './main--result';
+import resulteFail from './main--result-fail';
 import getRandom from './getRandom';
 
 const resultArr = {
-  1: mainResulte,
-  2: mainResulteFail
+  1: resulte,
+  2: resulteFail
 };
 
-const screenMainLevelGenre = `<section class="main main--level main--level-genre">
-    <h2 class="title">Выберите инди-рок треки</h2>
-    <form class="genre">
-      <div class="genre-answer">
-        <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-1" id="a-1">
-        <label class="genre-answer-check" for="a-1"></label>
-      </div>
-
-      <div class="genre-answer">
-        <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-1" id="a-2">
-        <label class="genre-answer-check" for="a-2"></label>
-      </div>
-
-      <div class="genre-answer">
-        <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-1" id="a-3">
-        <label class="genre-answer-check" for="a-3"></label>
-      </div>
-
-      <div class="genre-answer">
-        <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-1" id="a-4">
-        <label class="genre-answer-check" for="a-4"></label>
-      </div>
-
-      <button class="genre-answer-send" type="submit">Ответить</button>
-    </form>
-  </section>`;
-
 let j = 0;
-const mainLevelGenre = getElementFromTemplate(screenMainLevelGenre);
 const inputCheck = mainLevelGenre.querySelectorAll(`.genre-answer input`);
 const btnAnswerSend = mainLevelGenre.querySelector(`button.genre-answer-send`);
 const inputCheckArr = Array.from(inputCheck);
-
-btnAnswerSend.setAttribute(`disabled`, `disabled`);
 
 const callChangeScreen = () => {
   inputCheckArr.forEach(function (div) {
