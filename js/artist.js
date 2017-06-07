@@ -1,8 +1,8 @@
-import getElementFromTemplate from './get--element-from-template';
-import mainLevelGenre from './main--level-genre';
 import changeScreen from './changeScreen';
+import genre from './genre-level';
 
-const screenMainLevelArtist = `<section class="main main--level main--level-artist">
+function artist() {
+  const screenMainLevelArtist = `<section class="main main--level main--level-artist">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle
         cx="390" cy="390" r="370"
@@ -48,14 +48,13 @@ const screenMainLevelArtist = `<section class="main main--level main--level-arti
       </form>
     </div>
   </section>`;
+  changeScreen(screenMainLevelArtist);
+  const answer = document.querySelectorAll(`.main-answer-wrapper`);
+  const answerArr = Array.from(answer);
 
-const mainLevelArtist = getElementFromTemplate(screenMainLevelArtist);
-const callChangeScreen = () => {
-  changeScreen(mainLevelArtist, mainLevelGenre);
-};
-const answer = mainLevelArtist.querySelectorAll(`.main-answer-wrapper`);
-const answerArr = Array.from(answer);
-answerArr.forEach(function (div) {
-  div.onclick = callChangeScreen;
-});
-export default mainLevelArtist;
+  answerArr.forEach(function (div) {
+    div.onclick = genre;
+  });
+}
+
+export default artist;

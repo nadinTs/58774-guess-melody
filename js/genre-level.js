@@ -1,6 +1,7 @@
-import getElementFromTemplate from './get--element-from-template';
-
-const screenMainLevelGenre = `<section class="main main--level main--level-genre">
+import changeScreen from './changeScreen';
+import answer from './genre';
+function genreLevel() {
+  const screenMainLevelGenre = `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>
     <form class="genre">
       <div class="genre-answer">
@@ -30,7 +31,8 @@ const screenMainLevelGenre = `<section class="main main--level main--level-genre
       <button class="genre-answer-send" type="submit">Ответить</button>
     </form>
   </section>`;
+  changeScreen(screenMainLevelGenre);
+  answer();
+}
 
-const mainLevelGenre = getElementFromTemplate(screenMainLevelGenre);
-
-export default mainLevelGenre;
+export default genreLevel;

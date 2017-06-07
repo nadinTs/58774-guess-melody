@@ -1,8 +1,8 @@
-import getElementFromTemplate from './get--element-from-template';
 import changeScreen from './changeScreen';
-import mainLevelArtist from './main--level-artist';
+import mainLevelArtist from './artist';
 
-const screenWelcome = `<section class="main main--welcome">
+function welcome() {
+  const screenWelcome = `<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
     <button class="main-play">Начать игру</button>
     <h2 class="title main-title">Правила игры</h2>
@@ -12,12 +12,11 @@ const screenWelcome = `<section class="main main--welcome">
       Удачи!
     </p>
   </section>`;
+  changeScreen(screenWelcome);
 
-const mainWelcome = getElementFromTemplate(screenWelcome);
-const buttonPlay = mainWelcome.querySelector(`.main-play`);
+  const buttonPlay = document.querySelector(`.main-play`);
+  buttonPlay.onclick = mainLevelArtist;
+}
 
-const callChangeScreen = () => {
-  changeScreen(mainWelcome, mainLevelArtist);
-};
-buttonPlay.onclick = callChangeScreen;
-export default mainWelcome;
+
+export default welcome;

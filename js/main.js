@@ -1,6 +1,3 @@
-import welcome from './main--welcome';
+import welcome from './welcome';
 
-const app = document.querySelector(`div.app`);
-const main = app.querySelector(`section.main`);
-
-main.appendChild(welcome);
+welcome();
