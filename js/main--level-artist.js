@@ -54,7 +54,8 @@ const callChangeScreen = () => {
   changeScreen(mainLevelArtist, mainLevelGenre);
 };
 const answer = mainLevelArtist.querySelectorAll(`.main-answer-wrapper`);
-[].forEach.call(answer, function (div) {
+const answerArr = Array.from(answer);
+answerArr.forEach(function (div) {
   div.onclick = callChangeScreen;
 });
 export default mainLevelArtist;

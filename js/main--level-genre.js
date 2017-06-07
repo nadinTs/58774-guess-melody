@@ -2,6 +2,7 @@ import getElementFromTemplate from './get--element-from-template';
 import changeScreen from './changeScreen';
 import mainResulte from './main--result';
 import mainResulteFail from './main--result-fail';
+import getRandom from './getRandom';
 
 const resultArr = {
   1: mainResulte,
@@ -39,25 +40,25 @@ const screenMainLevelGenre = `<section class="main main--level main--level-genre
     </form>
   </section>`;
 
-const getRandom = (max, min) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
+let j = 0;
 const mainLevelGenre = getElementFromTemplate(screenMainLevelGenre);
 const inputCheck = mainLevelGenre.querySelectorAll(`.genre-answer input`);
+const btnAnswerSend = mainLevelGenre.querySelector(`button.genre-answer-send`);
+const inputCheckArr = Array.from(inputCheck);
+
+btnAnswerSend.setAttribute(`disabled`, `disabled`);
 
 const callChangeScreen = () => {
-  [].forEach.call(inputCheck, function (div) {
+  inputCheckArr.forEach(function (div) {
     div.checked = false;
+    btnAnswerSend.setAttribute(`disabled`, `disabled`);
+    j = 0;
   });
   changeScreen(mainLevelGenre, resultArr[getRandom(2, 1)]);
 };
 
-const btnAnswerSend = mainLevelGenre.querySelector(`button.genre-answer-send`);
-btnAnswerSend.setAttribute(`disabled`, `disabled`);
 
-let j = 0;
-const addDisabled = (e) => {
+const changeDisabled = (e) => {
   if (e.target.checked) {
     j++;
   } else {
@@ -70,8 +71,8 @@ const addDisabled = (e) => {
   }
 };
 
-[].forEach.call(inputCheck, function (div) {
-  div.onclick = addDisabled;
+inputCheckArr.forEach(function (div) {
+  div.onclick = changeDisabled;
 });
 btnAnswerSend.onclick = callChangeScreen;
 
