@@ -12,9 +12,7 @@ export default (data) => {
   let j = 0;
   const inputCheck = document.querySelectorAll(`.genre-answer input`);
   const btnAnswerSend = document.querySelector(`button.genre-answer-send`);
-  const playerWrapper = document.querySelectorAll(`.player-wrapper`);
   const inputCheckArr = Array.from(inputCheck);
-  const playerWrapperArr = Array.from(playerWrapper);
 
   btnAnswerSend.setAttribute(`disabled`, `disabled`);
 
@@ -38,11 +36,9 @@ export default (data) => {
     } else {
       btnAnswerSend.setAttribute(`disabled`, `disabled`);
     }
+    player(e.target, data.treck[e.target.id], true, true);
   };
 
-  playerWrapperArr.forEach(function (div) {
-    player(div, data.treck[div.id], false, true);
-  });
   inputCheckArr.forEach(function (div) {
     div.onclick = changeDisabled;
   });
