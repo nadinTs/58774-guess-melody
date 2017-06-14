@@ -1,5 +1,6 @@
 import changeScreen from './changeScreen';
 import answer from './genre';
+
 function genreLevel() {
   const screenMainLevelGenre = `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>

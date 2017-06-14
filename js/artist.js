@@ -1,5 +1,8 @@
 import changeScreen from './changeScreen';
 import genre from './genre-level';
+import player from './player';
+import data from './data';
+import dataAnswerArtist from './dataAnswerArtist';
 
 function artist() {
   const screenMainLevelArtist = `<section class="main main--level main--level-artist">
@@ -26,7 +29,7 @@ function artist() {
           <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
           <label class="main-answer" for="answer-1">
             <img class="main-answer-preview" src="">
-            Пелагея
+            ${dataAnswerArtist.pelageya}
           </label>
         </div>
 
@@ -34,7 +37,7 @@ function artist() {
           <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
           <label class="main-answer" for="answer-2">
             <img class="main-answer-preview" src="">
-            Краснознаменная дивизия имени моей бабушки
+            ${dataAnswerArtist.grend}
           </label>
         </div>
 
@@ -42,19 +45,21 @@ function artist() {
           <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
           <label class="main-answer" for="answer-2">
             <img class="main-answer-preview" src="">
-            Lorde
+            ${dataAnswerArtist.lorde}
           </label>
         </div>
       </form>
     </div>
   </section>`;
   changeScreen(screenMainLevelArtist);
+  const playerWrapper = document.querySelector(`.player-wrapper`);
   const answer = document.querySelectorAll(`.main-answer-wrapper`);
   const answerArr = Array.from(answer);
-
+  player(playerWrapper, data[`a-1`], true, true);
   answerArr.forEach(function (div) {
     div.onclick = genre;
   });
+
 }
 
 export default artist;

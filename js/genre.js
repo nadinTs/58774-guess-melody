@@ -1,6 +1,8 @@
 import resulte from './result';
 import resulteFail from './fail';
 import getRandom from './getRandom';
+import player from './player';
+import data from './data';
 
 const genre = () => {
   const resultArr = {
@@ -23,7 +25,10 @@ const genre = () => {
     });
     resultArr[getRandom(2, 1)]();
   };
-
+  const playTreck = (e) => {
+    const playerWrapper = e.target.parentNode.querySelector(`.player-wrapper`);
+    player(playerWrapper, data[e.target.id], true, true);
+  };
 
   const changeDisabled = (e) => {
     if (e.target.checked) {
@@ -36,6 +41,7 @@ const genre = () => {
     } else {
       btnAnswerSend.setAttribute(`disabled`, `disabled`);
     }
+    playTreck(e);
   };
 
   inputCheckArr.forEach(function (div) {
