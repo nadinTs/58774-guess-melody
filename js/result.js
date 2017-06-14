@@ -1,6 +1,6 @@
 import welcome from './welcome';
 import changeScreen from './changeScreen';
-import dataResult from './dataResult'
+import dataResult from './dataResult';
 
 function result() {
   const screenMainResult = `<section class="main main--result">

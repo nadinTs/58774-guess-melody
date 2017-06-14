@@ -5,4 +5,4 @@ const dataResult = {
   percent: `80`
 };
 
-export default  dataResult;
+export default dataResult;
