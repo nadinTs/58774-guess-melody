@@ -24,7 +24,12 @@ export default (data) => {
     });
     resultArr[getRandom(2, 1)]();
   };
-
+  const box = document.querySelectorAll(`.player-wrapper`);
+  const boxArr = Array.from(box);
+  boxArr.forEach(function (div) {
+    let input = div.parentNode.querySelector(`input`);
+    player(div, data.track[input.id], false, true);
+  });
   const changeDisabled = (e) => {
     if (e.target.checked) {
       j++;
@@ -36,7 +41,6 @@ export default (data) => {
     } else {
       btnAnswerSend.setAttribute(`disabled`, `disabled`);
     }
-    player(e.target, data.treck[e.target.id], true, true);
   };
 
   inputCheckArr.forEach(function (div) {

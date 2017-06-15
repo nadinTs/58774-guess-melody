@@ -2,7 +2,7 @@ import changeScreen from './changeScreen';
 import artist from './artist';
 
 export default (data) => {
-  const screenWelcome = `
+  const screenWelcome = () => `
   <section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>${data.welcome.title}</h1></section>
     <button class="main-play">${data.welcome.play}</button>
@@ -10,7 +10,8 @@ export default (data) => {
     <p class="text main-text">${data.welcome.rulesText}
     </p>
   </section>`;
-  changeScreen(screenWelcome);
+
+  changeScreen(screenWelcome());
   const buttonPlay = document.querySelector(`.main-play`);
   buttonPlay.onclick = () => {
     artist(data);

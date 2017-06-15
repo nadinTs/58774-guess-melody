@@ -20,32 +20,17 @@ export default (data) => {
     <div class="main-wrap">
       <div class="main-timer"></div>
 
-      <h2 class="title main-title">${data.artist.question}</h2>
+      <h2 class="title main-title">${data.question}</h2>
       <div class="player-wrapper"></div>
       <form class="main-list">
-        <div class="main-answer-wrapper">
+      ${[...Object.entries(data.artist)].map(([answer]) => `<div class="main-answer-wrapper">
           <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
           <label class="main-answer" for="answer-1">
             <img class="main-answer-preview" src="">
-            ${data.artist.pelageya}
+            ${answer}
           </label>
         </div>
-
-        <div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-2">
-            <img class="main-answer-preview" src="">
-            ${data.artist.grend}
-          </label>
-        </div>
-
-        <div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-2">
-            <img class="main-answer-preview" src="">
-            ${data.artist.lorde}
-          </label>
-        </div>
+        `)};
       </form>
     </div>
   </section>`;
@@ -53,7 +38,7 @@ export default (data) => {
   const playerWrapper = document.querySelector(`.player-wrapper`);
   const answer = document.querySelectorAll(`.main-answer-wrapper`);
   const answerArr = Array.from(answer);
-  player(playerWrapper, data.treck[`a-1`], true, true);
+  player(playerWrapper, data.track[`a-1`], true, true);
   answerArr.forEach(function (div) {
     div.onclick = () => {
       genre(data);
