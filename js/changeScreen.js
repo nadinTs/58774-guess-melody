@@ -1,7 +1,9 @@
-const app = document.querySelector(`div.app`);
-const main = app.querySelector(`section.main`);
-const changeScreen = function (element) {
-  main.innerHTML = ``;
-  main.insertAdjacentHTML(`afterBegin`, element);
+export default (element) => {
+  const app = document.querySelector(`div.app`);
+  const main = app.querySelector(`section.main`);
+  const section = document.createElement(`section`);
+  section.className = `main`;
+  section.innerHTML = element;
+  app.removeChild(main);
+  app.prepend(section);
 };
-export default changeScreen;

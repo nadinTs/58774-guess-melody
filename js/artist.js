@@ -29,8 +29,7 @@ export default (data) => {
             <img class="main-answer-preview" src="">
             ${answer}
           </label>
-        </div>
-        `)};
+        </div>`)};
       </form>
     </div>
   </section>`;
