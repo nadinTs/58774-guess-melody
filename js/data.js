@@ -18,9 +18,9 @@ export default Object.freeze({
     'a-4': `https://www.youtube.com/audiolibrary_download?vid=a38a9ebe0a4d5591`
   },
   artist: {
-    pelageya: `Пелагея`,
-    grend: `Краснознаменная дивизия имени моей бабушки`,
-    lorde: `Lorde`,
+    'Пелагея': null,
+    'Краснознаменная дивизия имени моей бабушки': null,
+    'Lorde': true,
   },
   question: `Кто исполняет эту песню?`,
   welcome: {

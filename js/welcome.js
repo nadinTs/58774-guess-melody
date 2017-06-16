@@ -1,17 +1,17 @@
 import changeScreen from './changeScreen';
 import artist from './artist';
 
-export default (data) => {
-  const screenWelcome = () => `
+const screenWelcome = (text) => `
   <section class="main main--welcome">
-    <section class="logo" title="Угадай мелодию"><h1>${data.welcome.title}</h1></section>
-    <button class="main-play">${data.welcome.play}</button>
-    <h2 class="title main-title">${data.welcome.rulesTitle}</h2>
-    <p class="text main-text">${data.welcome.rulesText}
+    <section class="logo" title="Угадай мелодию"><h1>${text.title}</h1></section>
+    <button class="main-play">${text.play}</button>
+    <h2 class="title main-title">${text.rulesTitle}</h2>
+    <p class="text main-text">${text.rulesText}
     </p>
   </section>`;
 
-  changeScreen(screenWelcome());
+export default (data) => {
+  changeScreen(screenWelcome(data.welcome));
   const buttonPlay = document.querySelector(`.main-play`);
   buttonPlay.onclick = () => {
     artist(data);
