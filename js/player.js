@@ -24,7 +24,6 @@ const switchState = (state, player, element) => {
   syncState(player, element);
 };
 
-
 const destroyPlayer = (element, state) => {
   const player = element.querySelector(`audio`);
   const button = element.querySelector(`button`);
@@ -42,7 +41,7 @@ const destroyPlayer = (element, state) => {
 };
 
 
-window.initializePlayer = (element, file, autoplay = false, controllable = true) => {
+export default window.initializePlayer = (element, file, autoplay = false, controllable = true) => {
   let state = {};
 
   const content = document.querySelector(`template`)

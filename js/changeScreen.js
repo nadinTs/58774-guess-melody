@@ -1,8 +1,13 @@
-const app = document.querySelector(`div.app`);
-const main = app.querySelector(`section.main`);
-
-const changeScreen = function (element) {
-  main.innerHTML = element;
+const templ = (element) => {
+  const section = document.createElement(`section`);
+  section.className = `main`;
+  section.innerHTML = element;
+  return section;
 };
-export default changeScreen;
 
+export default (element) => {
+  const app = document.querySelector(`div.app`);
+  const main = app.querySelector(`section.main`);
+  app.removeChild(main);
+  app.prepend(templ(element));
+};

@@ -1,22 +1,19 @@
 import changeScreen from './changeScreen';
-import mainLevelArtist from './artist';
+import artist from './artist';
 
-function welcome() {
-  const screenWelcome = `<section class="main main--welcome">
-    <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
-    <button class="main-play">Начать игру</button>
-    <h2 class="title main-title">Правила игры</h2>
-    <p class="text main-text">
-      Правила просты&nbsp;— за&nbsp;2 минуты дать
-      максимальное количество правильных ответов.<br>
-      Удачи!
+const screenWelcome = (text) => `
+  <section class="main main--welcome">
+    <section class="logo" title="Угадай мелодию"><h1>${text.title}</h1></section>
+    <button class="main-play">${text.play}</button>
+    <h2 class="title main-title">${text.rulesTitle}</h2>
+    <p class="text main-text">${text.rulesText}
     </p>
   </section>`;
-  changeScreen(screenWelcome);
 
+export default (data) => {
+  changeScreen(screenWelcome(data.welcome));
   const buttonPlay = document.querySelector(`.main-play`);
-  buttonPlay.onclick = mainLevelArtist;
-}
-
-
-export default welcome;
+  buttonPlay.onclick = () => {
+    artist(data);
+  };
+};
