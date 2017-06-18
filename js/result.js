@@ -1,6 +1,6 @@
 import welcome from './welcome';
 import changeScreen from './changeScreen';
-import data from './data';
+import {data} from './data/data';
 
 const screenMainResult = (result) => `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
