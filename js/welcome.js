@@ -13,7 +13,5 @@ const screenWelcome = (text) => `
 export default (data) => {
   changeScreen(screenWelcome(data.welcome));
   const buttonPlay = document.querySelector(`.main-play`);
-  buttonPlay.onclick = () => {
-    artist(data);
-  };
+  buttonPlay.onclick = artist;
 };

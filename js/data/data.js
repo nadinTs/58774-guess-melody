@@ -1,7 +1,7 @@
 export const data = Object.freeze({
   result: {
     lives: 3,
-    answer: 4,
+    answer: 0,
     minute: 2,
     seconds: 0,
     percent: 80
@@ -13,10 +13,18 @@ export const data = Object.freeze({
     replay: `Сыграть ещё раз`
   },
   track: {
-    'a-1': `https://www.youtube.com/audiolibrary_download?vid=48cbfd9a4a0bae73`,
-    'a-2': `https://www.youtube.com/audiolibrary_download?vid=886cf41f90ad49b6`,
-    'a-3': `https://www.youtube.com/audiolibrary_download?vid=d780811abe451ead`,
-    'a-4': `https://www.youtube.com/audiolibrary_download?vid=a38a9ebe0a4d5591`
+    'a-1': {
+      'https://www.youtube.com/audiolibrary_download?vid=48cbfd9a4a0bae73': null
+    },
+    'a-2': {
+      'https://www.youtube.com/audiolibrary_download?vid=886cf41f90ad49b6': null
+    },
+    'a-3': {
+      'https://www.youtube.com/audiolibrary_download?vid=d780811abe451ead': true
+    },
+    'a-4': {
+      'https://www.youtube.com/audiolibrary_download?vid=a38a9ebe0a4d5591': true
+    }
   },
   artist: {
     'Пелагея': null,
@@ -37,51 +45,11 @@ export const data = Object.freeze({
   }
 });
 
-export const setLives = (game, lives) => {
-  if (lives < 0) {
-    throw new RangeError(`Can't set negative lives`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.lives = lives;
-  return newGame;
-};
-export const setAnswer = (game, answers) => {
-  if (answers < 0) {
-    throw new RangeError(`Can't set negative answers`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.answer = answers;
-  return newGame;
-};
-export const setMinutes = (game, minute) => {
-  if (minute < 0) {
-    throw new RangeError(`Can't set negative minute`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.minute = minute;
-  return newGame;
-};
-export const setSeconds = (game, seconds) => {
-  if (seconds < 0) {
-    throw new RangeError(`Can't set negative seconds`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.seconds = seconds;
-  return newGame;
-};
-export const setStatisticAnswer = (game, answerResult) => {
-  if (answerResult < 0) {
-    throw new RangeError(`Can't set negative seconds`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.answers = answerResult;
-  return newGame;
-};
-export const setStatisticTime = (game, timeResult) => {
-  if (timeResult < 0) {
-    throw new RangeError(`Can't set negative seconds`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.answers = timeResult;
-  return newGame;
+export const changeableData = {
+  lives: 3,
+  answer: 0,
+  try: 10,
+  minute: 2,
+  seconds: 0,
+  percent: 0
 };

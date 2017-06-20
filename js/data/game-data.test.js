@@ -1,9 +1,10 @@
 import assert from 'assert';
-import {setAnswer, setLives, data, setSeconds, setMinutes, setStatisticAnswer, setStatisticTime} from './data';
+import {changeableData} from './data';
 import {statistics} from './statistic';
+import {setAnswer, setLives, setMinutes, setStatisticAnswer, setStatisticTime, setSeconds, setTryValue} from './functions';
 
 describe(`game`, () => {
-  describe(`StatisticAnswer`, () => {
+  describe(`setStatisticAnswer`, () => {
     it(`should update answer in statistic`, () => {
       assert(1, setStatisticAnswer(statistics.answers, 1).answer);
     });
@@ -11,7 +12,7 @@ describe(`game`, () => {
       setStatisticAnswer(statistics.answers, 1);
     });
   });
-  describe(`StatisticTime`, () => {
+  describe(`setStatisticTime`, () => {
     it(`should update answer in statistic`, () => {
       assert(1, setStatisticTime(statistics.time, 1).answer);
     });
@@ -19,48 +20,59 @@ describe(`game`, () => {
       setStatisticTime(statistics.time, 1);
     });
   });
-  describe(`seconds`, () => {
+  describe(`setSeconds`, () => {
     it(`should update seconds`, () => {
-      assert(1, setSeconds(data.result, 1).seconds);
+      assert(1, setSeconds(changeableData, 1).seconds);
     });
     it(`should't allow set negative seconds`, () => {
-      setSeconds(data.result.seconds, 1);
+      setSeconds(changeableData.seconds, 1);
     });
     it(`should have 0 minutes on start`, () => {
-      assert.equal(data.result.seconds, 0);
+      assert.equal(changeableData.seconds, 0);
     });
   });
-  describe(`minutes`, () => {
+  describe(`setMinutes`, () => {
     it(`should update minutes`, () => {
-      assert(1, setMinutes(data.result, 1).minute);
+      assert(1, setMinutes(changeableData, 1).minute);
     });
     it(`should't allow set negative minutes`, () => {
-      setMinutes(data.result.minute, 1);
+      setMinutes(changeableData.minute, 1);
     });
     it(`should have 2 minutes on start`, () => {
-      assert.equal(data.result.minute, 2);
+      assert.equal(changeableData.minute, 2);
     });
   });
-  describe(`answer`, () => {
+  describe(`setAnswer`, () => {
     it(`should update answer`, () => {
-      assert(1, setAnswer(data.result, 1).answer);
+      assert(1, setAnswer(changeableData.result, 1).answer);
     });
     it(`should't allow set negative answers`, () => {
-      setAnswer(data.result.answer, 1);
+      setAnswer(changeableData.answer, 1);
     });
-    it(`should have 4 answer on start`, () => {
-      assert.equal(data.result.answer, 4);
+    it(`should have 0 answer on start`, () => {
+      assert.equal(changeableData.answer, 0);
     });
   });
-  describe(`lives`, () => {
+  describe(`setLives`, () => {
     it(`should update lives`, () => {
-      assert(1, setLives(data.result, 1).lives);
+      assert(1, setLives(changeableData, 1).lives);
     });
     it(`should't allow set negative lives`, () => {
-      setLives(data.result.lives, 1);
+      setLives(changeableData.lives, 1);
     });
     it(`should have 3 lives on start`, () => {
-      assert.equal(data.result.lives, 3);
+      assert.equal(changeableData.lives, 3);
+    });
+  });
+  describe(`setTryValue`, () => {
+    it(`should update questions`, () => {
+      assert(1, setTryValue(changeableData.result, 1).try);
+    });
+    it(`should't allow set negative questions`, () => {
+      setTryValue(changeableData.try, 1);
+    });
+    it(`should have 10 questions on start`, () => {
+      assert.equal(changeableData.try, 10);
     });
   });
 });
