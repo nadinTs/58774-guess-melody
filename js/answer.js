@@ -1,36 +1,16 @@
-import result from './result';
-import resultFail from './fail';
-import getRandom from './getRandom';
 import player from './player';
-import artist from './artist';
-import genre from './genre';
-import {setTry} from './data/functions';
-import {data, changeableData} from './data/data';
+import {track, changeableData, data} from './data/data';
+import chooseScreen from './chooseScreen';
+import {setTrueAnswer, setLives, setResult} from './data/functions';
 
 export default () => {
-  const questionArr = {
-    1: artist,
-    2: genre
-  };
-
   let j = 0;
   const inputCheck = document.querySelectorAll(`.genre-answer input`);
   const btnAnswerSend = document.querySelector(`button.genre-answer-send`);
   const inputCheckArr = Array.from(inputCheck);
-  const answerElementArtist = document.querySelector(`.main-answer-r`);
+  const answerElementArtist = document.querySelector(`.main-list`);
 
-  const setTrueScreen = () => {
-    if (changeableData.try > 0) {
-      questionArr[getRandom(2, 1)]();
-    } else {
-      if (changeableData.try < 0 || (changeableData.minute < 0 && changeableData < 0)) {
-        result();
-      } else {
-        resultFail();
-      }
-    }
-    setTry(changeableData);
-  };
+
   if (btnAnswerSend) {
     btnAnswerSend.setAttribute(`disabled`, `disabled`);
     const callChangeScreen = () => {
@@ -39,14 +19,26 @@ export default () => {
         btnAnswerSend.setAttribute(`disabled`, `disabled`);
         j = 0;
       });
-      setTrueScreen();
+      chooseScreen(changeableData);
+      if (changeableData.trueAnswer !== changeableData.true) {
+        changeableData.lives = setLives(changeableData);
+      } else {
+        changeableData.result = setResult(changeableData);
+      }
+      changeableData.trueAnswer = 0;
     };
     const box = document.querySelectorAll(`.player-wrapper`);
     const boxArr = Array.from(box);
+    changeableData.true = 0;
     boxArr.forEach(function (div) {
       let input = div.parentNode.querySelector(`input`);
-      player(div, Object.keys(data.track[input.id]), false, true);
-      // console.log(Object.values(data.track[input.id]));
+      player(div, Object.keys(track[input.id]), false, true);
+      const arrInner = track[input.id];
+      Object.values(arrInner).map((element) => {
+        if (element === true) {
+          changeableData.true += 1;
+        }
+      });
     });
     const changeDisabled = (e) => {
       if (e.target.checked) {
@@ -59,6 +51,9 @@ export default () => {
       } else {
         btnAnswerSend.setAttribute(`disabled`, `disabled`);
       }
+      const idCheckedElement = e.target.parentNode.querySelector(`input`).id;
+      const check = e.target.checked;
+      changeableData.trueAnswer += setTrueAnswer(check, changeableData.trueAnswer, track[idCheckedElement]);
     };
 
     inputCheckArr.forEach(function (div) {
@@ -66,6 +61,18 @@ export default () => {
     });
     btnAnswerSend.onclick = callChangeScreen;
   } else {
+    const playerWrapper = document.querySelector(`.player-wrapper`);
+    player(playerWrapper, Object.keys(track[`a-3`]), true, true);
+
+    const setTrueScreen = (e) => {
+      const element = e.target.parentNode.querySelector(`span`).innerHTML;
+      if (data.artist[element] !== true) {
+        changeableData.lives = setLives(changeableData);
+      } else {
+        changeableData.result = setResult(changeableData);
+      }
+      chooseScreen(changeableData);
+    };
     answerElementArtist.onclick = setTrueScreen;
   }
 };

@@ -11,6 +11,9 @@
 // Длина окружности = 2πR
 // Длина шага = Длина окружности / Количество шагов
 // Пропуск = Длина шага * Номер шага
+import './animate';
+import './time-format';
+
 const redrawCircle = (circle, radius, animation) => {
   const length = 2 * Math.PI * radius;
   const stepLength = length / animation.steps;

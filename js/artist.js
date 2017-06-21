@@ -1,11 +1,10 @@
 import changeScreen from './changeScreen';
 import answer from './answer';
-import player from './player';
-import {data} from './data/data';
+import {data, changeableData} from './data/data';
 import {headElement} from './head';
 
 const screenMainLevelArtist = () => `<section class="main main--level main--level-artist">
-  ${headElement}
+  ${headElement(changeableData)}
   <div class="main-wrap">
     <div class="main-timer"></div>
 
@@ -16,7 +15,7 @@ const screenMainLevelArtist = () => `<section class="main main--level main--leve
         <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
         <label class="main-answer" for="answer-1">
           <img class="main-answer-preview" src="">
-          ${element}
+          <span>${element}</span>
         </label>
       </div>`).join(``)}
     </form>
@@ -25,7 +24,5 @@ const screenMainLevelArtist = () => `<section class="main main--level main--leve
 
 export default () => {
   changeScreen(screenMainLevelArtist());
-  const playerWrapper = document.querySelector(`.player-wrapper`);
-  player(playerWrapper, Object.keys(data.track[`a-3`]), true, true);
   answer();
 };
