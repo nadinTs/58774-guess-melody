@@ -1,6 +1,6 @@
 import {changeScreen} from './changeScreen';
 import artist from './artist';
-import {changeableData} from './data/data'
+import {changeableData} from './data/data';
 import changeTime from './changeTime';
 
 const screenWelcome = (text) => `

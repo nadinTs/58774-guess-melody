@@ -40,7 +40,7 @@ export const track = {
 };
 
 export const changeableData = {
-  lives: 2,
+  lives: 3,
   attempt: 9,
   minute: 0,
   seconds: 0,
