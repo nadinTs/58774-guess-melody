@@ -7,9 +7,7 @@ const app = document.querySelector(`div.app`);
 
 const removeTimer = () => {
   const timerValue = app.querySelector(`.timer-value`);
-  const svg = app.querySelector(`svg`);
-  if (svg) {
-    app.removeChild(svg);
+  if (timerValue) {
     app.removeChild(timerValue);
   }
 };
@@ -22,6 +20,7 @@ export const changeScreen = (element, head, value) => {
       setTimerSecond(value);
       removeTimer();
       app.insertAdjacentHTML(`afterBegin`, head(changeableData));
+      window.initializeCountdown();
     }, 1000);
     setTimeout(() => {
       clearInterval(timer);

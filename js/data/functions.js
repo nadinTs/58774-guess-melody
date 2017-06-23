@@ -137,10 +137,8 @@ export const setTimerSecond = (data, val) => {
 
 export const finishGame = (data) => {
   const app = document.querySelector(`div.app`);
-  const svg = app.querySelector(`svg`);
   const timerValue = app.querySelector(`.timer-value`);
-  if (svg) {
-    app.removeChild(svg);
+  if (timerValue) {
     app.removeChild(timerValue);
   }
   data.minute = 0;
