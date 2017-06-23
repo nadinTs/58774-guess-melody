@@ -125,19 +125,15 @@ export const setTimerSecond = (data, val) => {
   if (val < 0) {
     throw new RangeError(`Can't set negative question`);
   }
-  let minuteCount = +data.seconds;
-  minuteCount += 1;
-  data.seconds = minuteCount;
-  if (minuteCount === 60) {
-    data.seconds = 0;
-    data.minute = +data.minute + 1;
-  }
-  return minuteCount;
+  let SecondCount = +data.seconds;
+  SecondCount += 1;
+  data.seconds = SecondCount;
+  return SecondCount;
 };
 
 export const finishGame = (data) => {
   const app = document.querySelector(`div.app`);
-  const timerValue = app.querySelector(`.timer-value`);
+  const timerValue = app.querySelector(`.main-timer`);
   if (timerValue) {
     app.removeChild(timerValue);
   }

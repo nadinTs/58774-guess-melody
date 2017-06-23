@@ -1,19 +1,11 @@
 import {changeScreen} from './changeScreen';
 import answer from './answer';
 import {data} from './data/data';
-import {refreshHeader} from './head';
+import {header} from './head';
 import './timer.js';
 
 const screenMainLevelArtist = () => `<section class="main main--level main--level-artist">
-  <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-      <circle
-        cx="390" cy="390" r="370"
-        class="timer-line"
-        style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"></circle>
-  
-  </svg>
   <div class="main-wrap">
-    <div class="main-timer"></div>
 
     <h2 class="title main-title">${data.question}</h2>
     <div class="player-wrapper"></div>
@@ -30,7 +22,8 @@ const screenMainLevelArtist = () => `<section class="main main--level main--leve
 </section>`;
 
 export default () => {
-  changeScreen(screenMainLevelArtist(), refreshHeader);
+  changeScreen(screenMainLevelArtist(), header());
+  window.initializeCountdown();
   answer();
 };
 

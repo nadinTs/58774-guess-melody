@@ -49,8 +49,8 @@ describe(`game`, () => {
     it(`should't allow set negative lives`, () => {
       setLives(changeableData.lives, 1);
     });
-    it(`should have 2 lives on start`, () => {
-      assert.equal(changeableData.lives, 2);
+    it(`should have 3 lives on start`, () => {
+      assert.equal(changeableData.lives, 3);
     });
   });
   describe(`setAttemptValue`, () => {
