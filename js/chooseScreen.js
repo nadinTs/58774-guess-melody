@@ -3,7 +3,8 @@ import resultFail from './fail';
 import artist from './artist';
 import getRandom from './getRandom';
 import genre from './genre';
-import {setTry} from './data/functions';
+import {setAttempt} from './data/functions';
+import {finishGame} from './data/functions';
 import {changeableData} from './data/data';
 
 export default (data) => {
@@ -11,19 +12,15 @@ export default (data) => {
     1: artist,
     2: genre
   };
-  if (data.try > 0 && data.lives > 0) {
+  if (data.attempt > 0 && data.lives > 0 && data.minute !== 2 && data.seconds !== 59) {
     questionArr[getRandom(2, 1)]();
   } else {
-    if (data.try <= 0) {
-      result(changeableData);
-    } else if (data.lives <= 0) {
+    if (data.attempt <= 0) {
+      result(data);
+    } else if (data.lives <= 0 || data.minute !== 2 && data.seconds !== 59) {
       resultFail();
     }
-    changeableData.lives = 2;
-    changeableData.result = 0;
-    changeableData.trueAnswer = 0;
-    changeableData.true = 0;
-    changeableData.try = 9;
+    finishGame(changeableData);
   }
-  setTry(data);
+  setAttempt(data);
 };

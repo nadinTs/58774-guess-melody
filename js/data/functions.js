@@ -9,6 +9,7 @@ export const setLives = (data, lives) => {
   return newData.lives;
 };
 export const setResult = (data, value) => {
+  // debugger;
   if (value < 0) {
     throw new RangeError(`Can't set negative results`);
   }
@@ -48,19 +49,19 @@ export const setStatisticTime = (game, timeResult) => {
   newGame.answers = timeResult;
   return newGame;
 };
-export const setTryValue = (game, questionResult) => {
+export const setAttemptValue = (game, questionResult) => {
   if (questionResult < 0) {
-    throw new RangeError(`Can't set negative seconds`);
+    throw new RangeError(`Can't set negative question`);
   }
   const newGame = Object.assign({}, game);
-  newGame.try = questionResult;
+  newGame.attempt = questionResult;
   return newGame;
 };
-export const setTry = (data) => {
-  if (data.try > 0) {
-    data.try = +data.try - 1;
+export const setAttempt = (data) => {
+  if (data.attempt > 0) {
+    data.attempt = +data.attempt - 1;
   } else {
-    data.try = 9;
+    data.attempt = 9;
   }
 };
 export const setTrueAnswer = (element, data, track) => {
@@ -84,20 +85,23 @@ export const setTrueAnswer = (element, data, track) => {
   }
   return dataNew;
 };
-const setIndex = (arr) => {
+const setIndex = (arr, data) => {
   let lenght = 0;
-  const index = arr.findIndex((div) => {
+  arr.forEach((div) => {
     lenght += 1;
-    if (div.time === 10 && div.answers === 8) {
+  });
+  const index = arr.findIndex((div) => {
+    if (div.time === data.minute && div.answers === data.result) {
       return div;
     }
     return false;
   });
-  return ((lenght - index) / lenght) * 100;
+  return Math.round(((lenght - index) / lenght) * 100);
 };
 export const setPercent = (statistics, data) => {
-  statistics.push({time: 10, answers: 8});
-  statistics.sort((a, b) => {
+  const statisticsNew = statistics;
+  statisticsNew.push({answers: data.result, time: data.minute});
+  statisticsNew.sort((a, b) => {
     if (a.time > b.time) {
       return 1;
     }
@@ -106,7 +110,7 @@ export const setPercent = (statistics, data) => {
     }
     return 0;
   });
-  statistics.sort((a, b) => {
+  statisticsNew.sort((a, b) => {
     if (a.answers < b.answers) {
       return 1;
     }
@@ -115,25 +119,35 @@ export const setPercent = (statistics, data) => {
     }
     return 0;
   });
-
-  return setIndex(statistics);
+  return setIndex(statisticsNew, data);
 };
-export const setTimerSecond = (val) => {
-  let minuteCount = 0;
-  const minutes = () => {
-    return minuteCount++;
-  };
-  return {
-    minutesResult: setInterval(minutes, 60000)
-  };
+export const setTimerSecond = (data, val) => {
+  if (val < 0) {
+    throw new RangeError(`Can't set negative question`);
+  }
+  let minuteCount = +val.seconds;
+  minuteCount += 1;
+  data.seconds = minuteCount;
+  if (minuteCount === 60) {
+    data.seconds = 0;
+    data.minute = +data.minute + 1;
+  }
+  return minuteCount;
 };
 
-export const setTimerMinute = (val) => {
-  let secondsCount = 0;
-  const seconds = () => {
-    return secondsCount++;
-  };
-  return {
-    secondsResult: setInterval(seconds, 1000),
-  };
+export const finishGame = (data) => {
+  const app = document.querySelector(`div.app`);
+  const svg = app.querySelector(`svg`);
+  const timerValue = app.querySelector(`.timer-value`);
+  if (svg) {
+    app.removeChild(svg);
+    app.removeChild(timerValue);
+  }
+  data.minute = 0;
+  data.setSeconds = 0;
+  data.lives = 2;
+  data.result = 0;
+  data.trueAnswer = 0;
+  data.trueAnswerArr = 0;
+  data.attempt = 9;
 };

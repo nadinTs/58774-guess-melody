@@ -1,4 +1,4 @@
-export const headElement = (arr) => `<svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+export const refreshHeader = (arr) => `<svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
     <circle
       cx="390" cy="390" r="370"
       class="timer-line"
@@ -9,4 +9,4 @@ export const headElement = (arr) => `<svg xmlns="http://www.w3.org/2000/svg" cla
       --><span class="timer-value-dots">:</span><!--
       --><span class="timer-value-secs">${arr.seconds}</span>
     </div>
-  </svg>`;
+</svg>`;

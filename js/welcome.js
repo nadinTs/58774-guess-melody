@@ -1,4 +1,4 @@
-import changeScreen from './changeScreen';
+import {changeScreen} from './changeScreen';
 import artist from './artist';
 
 const screenWelcome = (text) => `

@@ -41,11 +41,11 @@ export const track = {
 
 export const changeableData = {
   lives: 2,
-  try: 9,
-  minute: 2,
+  attempt: 9,
+  minute: 0,
   seconds: 0,
   percent: 0,
-  true: 0,
+  trueAnswerArr: 0,
   trueAnswer: 0,
   result: 0
 };

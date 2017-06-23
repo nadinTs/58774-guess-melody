@@ -1,5 +1,5 @@
 import welcome from './welcome';
-import changeScreen from './changeScreen';
+import {changeScreen} from './changeScreen';
 import {data} from './data/data';
 
 const screenMainResultFail = (fail) => `<section class="main main--result">

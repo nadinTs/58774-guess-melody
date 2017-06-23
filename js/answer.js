@@ -20,7 +20,7 @@ export default () => {
         j = 0;
       });
       chooseScreen(changeableData);
-      if (changeableData.trueAnswer !== changeableData.true) {
+      if (changeableData.trueAnswer !== changeableData.trueAnswerArr) {
         changeableData.lives = setLives(changeableData);
       } else {
         changeableData.result = setResult(changeableData);
@@ -29,14 +29,14 @@ export default () => {
     };
     const box = document.querySelectorAll(`.player-wrapper`);
     const boxArr = Array.from(box);
-    changeableData.true = 0;
+    changeableData.trueAnswerArr = 0;
     boxArr.forEach(function (div) {
       let input = div.parentNode.querySelector(`input`);
       player(div, Object.keys(track[input.id]), false, true);
       const arrInner = track[input.id];
       Object.values(arrInner).map((element) => {
         if (element === true) {
-          changeableData.true += 1;
+          changeableData.trueAnswerArr += 1;
         }
       });
     });

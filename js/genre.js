@@ -1,10 +1,9 @@
-import changeScreen from './changeScreen';
+import {changeScreen} from './changeScreen';
 import answer from './answer';
-import {data, track} from './data/data';
-import {headElement} from './head';
+import {data, track, changeableData} from './data/data';
+import {refreshHeader} from './head';
 
-const screenMainLevelGenre = (genres) => `<section class="main main--level main--level-genre">
-  ${headElement}
+const screenMainLevelGenre = () => `<section class="main main--level main--level-genre">
     <h2 class="title">${data.genre.title}</h2>
     <form class="genre" style="position: relative; z-index: 1000;">
       ${Object.keys(track).map((element) => `<div class="genre-answer">
@@ -17,6 +16,6 @@ const screenMainLevelGenre = (genres) => `<section class="main main--level main-
   </section>`;
 
 export default () => {
-  changeScreen(screenMainLevelGenre());
+  changeScreen(screenMainLevelGenre(), refreshHeader, changeableData);
   answer();
 };
