@@ -1,6 +1,6 @@
 import {changeScreen} from './changeScreen';
 import answer from './answer';
-import {data, changeableData} from './data/data';
+import {data} from './data/data';
 import {refreshHeader} from './head';
 import './timer.js';
 
@@ -30,7 +30,7 @@ const screenMainLevelArtist = () => `<section class="main main--level main--leve
 </section>`;
 
 export default () => {
-  changeScreen(screenMainLevelArtist(), refreshHeader, changeableData);
+  changeScreen(screenMainLevelArtist(), refreshHeader);
   answer();
 };
 

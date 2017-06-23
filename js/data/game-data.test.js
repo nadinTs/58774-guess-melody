@@ -82,5 +82,5 @@ describe(`game`, () => {
     it(`should't allow set negative seconds`, () => {
       setResult(changeableData.seconds, 1);
     });
-   });
+  });
 });

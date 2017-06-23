@@ -1,5 +1,7 @@
 import {changeScreen} from './changeScreen';
-import artist from './artist';
+import {changeableData} from './data/data';
+import changeTime from './changeTime';
+import {refreshHeader} from './head';
 
 const screenWelcome = (text) => `
   <section class="main main--welcome">
@@ -13,5 +15,5 @@ const screenWelcome = (text) => `
 export default (data) => {
   changeScreen(screenWelcome(data.welcome));
   const buttonPlay = document.querySelector(`.main-play`);
-  buttonPlay.onclick = artist;
+  buttonPlay.onclick = () => changeTime(changeableData, refreshHeader);
 };
