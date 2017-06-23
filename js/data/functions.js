@@ -125,7 +125,7 @@ export const setTimerSecond = (data, val) => {
   if (val < 0) {
     throw new RangeError(`Can't set negative question`);
   }
-  let minuteCount = +val.seconds;
+  let minuteCount = +data.seconds;
   minuteCount += 1;
   data.seconds = minuteCount;
   if (minuteCount === 60) {
