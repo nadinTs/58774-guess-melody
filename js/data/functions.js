@@ -132,13 +132,8 @@ export const setTimerSecond = (data, val) => {
 };
 
 export const finishGame = (data) => {
-  const app = document.querySelector(`div.app`);
-  const timerValue = app.querySelector(`.main-timer`);
-  if (timerValue) {
-    app.removeChild(timerValue);
-  }
-  data.minute = 0;
-  data.setSeconds = 0;
+  data.minute = `02`;
+  data.setSeconds = `00`;
   data.lives = 2;
   data.result = 0;
   data.trueAnswer = 0;

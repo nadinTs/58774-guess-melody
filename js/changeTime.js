@@ -6,7 +6,7 @@ import resultFail from './fail';
 
 const changeTime = (value) => {
   const timer = setInterval(() => {
-    setTimerSecond(value);
+    changeableData.seconds = setTimerSecond(value);
   }, 1000);
   setTimeout(() => {
     clearInterval(timer);

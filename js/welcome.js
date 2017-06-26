@@ -18,5 +18,6 @@ export default (data) => {
   buttonPlay.onclick = () => {
     artist();
     changeTime(changeableData);
+    window.initializeCountdown();
   };
 };

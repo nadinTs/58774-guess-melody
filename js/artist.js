@@ -2,7 +2,6 @@ import {changeScreen} from './changeScreen';
 import answer from './answer';
 import {data} from './data/data';
 import {header} from './head';
-import './timer.js';
 
 const screenMainLevelArtist = () => `<section class="main main--level main--level-artist">
   <div class="main-wrap">
@@ -22,8 +21,11 @@ const screenMainLevelArtist = () => `<section class="main main--level main--leve
 </section>`;
 
 export default () => {
-  changeScreen(screenMainLevelArtist(), header());
-  window.initializeCountdown();
+  const timer = document.querySelector(`.main-timer`);
+  if (!timer) {
+    changeScreen(header());
+  }
+  changeScreen(screenMainLevelArtist());
   answer();
 };
 

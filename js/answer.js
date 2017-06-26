@@ -1,5 +1,6 @@
 import player from './player';
-import {track, changeableData, data} from './data/data';
+import {changeableData, data} from './data/data';
+import {track} from './track';
 import chooseScreen from './chooseScreen';
 import {setTrueAnswer, setLives, setResult} from './data/functions';
 
@@ -9,7 +10,7 @@ export default () => {
   const btnAnswerSend = document.querySelector(`button.genre-answer-send`);
   const inputCheckArr = Array.from(inputCheck);
   const answerElementArtist = document.querySelector(`.main-list`);
-
+  const mainLevelArtist = document.querySelector(`.main--level-artist`);
 
   if (btnAnswerSend) {
     btnAnswerSend.setAttribute(`disabled`, `disabled`);
@@ -60,7 +61,7 @@ export default () => {
       div.onclick = changeDisabled;
     });
     btnAnswerSend.onclick = callChangeScreen;
-  } else {
+  } else if (mainLevelArtist) {
     const playerWrapper = document.querySelector(`.player-wrapper`);
     player(playerWrapper, Object.keys(track[`a-3`]), true, true);
 

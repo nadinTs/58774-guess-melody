@@ -1,7 +1,7 @@
 import {changeScreen} from './changeScreen';
 import answer from './answer';
-import {data, track, changeableData} from './data/data';
-import {header} from './head';
+import {data} from './data/data';
+import {track} from './track';
 
 const screenMainLevelGenre = () => `<section class="main main--level main--level-genre">
     <h2 class="title">${data.genre.title}</h2>
@@ -16,6 +16,6 @@ const screenMainLevelGenre = () => `<section class="main main--level main--level
   </section>`;
 
 export default () => {
-  changeScreen(screenMainLevelGenre(), header(), changeableData);
+  changeScreen(screenMainLevelGenre());
   answer();
 };
