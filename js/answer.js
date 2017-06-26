@@ -63,7 +63,7 @@ export default () => {
     btnAnswerSend.onclick = callChangeScreen;
   } else if (mainLevelArtist) {
     const playerWrapper = document.querySelector(`.player-wrapper`);
-    player(playerWrapper, Object.keys(track[`a-3`]), true, true);
+    player(playerWrapper, Object.keys(track[`a-3`]), false, true);
 
     const setTrueScreen = (e) => {
       const element = e.target.parentNode.querySelector(`span`).innerHTML;
