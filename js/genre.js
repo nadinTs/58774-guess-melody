@@ -1,19 +1,21 @@
-import changeScreen from './changeScreen';
+import {changeScreen} from './changeScreen';
 import answer from './answer';
+import {data} from './data/data';
+import {track} from './track';
 
-const screenMainLevelGenre = (genres) => `<section class="main main--level main--level-genre">
-    <h2 class="title">${genres.genre.title}</h2>
-    <form class="genre">
-      ${Object.keys(genres.track).map((track) => `<div class="genre-answer">
+const screenMainLevelGenre = () => `<section class="main main--level main--level-genre">
+    <h2 class="title">${data.genre.title}</h2>
+    <form class="genre" style="position: relative; z-index: 1000;">
+      ${Object.keys(track).map((element) => `<div class="genre-answer">
         <div class="player-wrapper"></div>
-        <input type="checkbox" name="answer" value="answer-1" id="${track}">
-        <label class="genre-answer-check" for="${track}"></label>
+        <input type="checkbox" name="answer" value="answer-1" id="${element}">
+        <label class="genre-answer-check" for="${element}"></label>
         </div>`).join(``)}
       <button class="genre-answer-send" type="submit">Ответить</button>
     </form>
   </section>`;
 
-export default (data) => {
-  changeScreen(screenMainLevelGenre(data));
-  answer(data);
+export default () => {
+  changeScreen(screenMainLevelGenre());
+  answer();
 };

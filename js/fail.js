@@ -1,6 +1,6 @@
 import welcome from './welcome';
-import changeScreen from './changeScreen';
-import data from './data';
+import {changeScreen} from './changeScreen';
+import {data} from './data/data';
 
 const screenMainResultFail = (fail) => `<section class="main main--result">
   <section class="logo" title="Угадай мелодию"><h1>${fail.title}</h1></section>

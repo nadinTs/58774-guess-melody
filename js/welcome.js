@@ -1,5 +1,7 @@
-import changeScreen from './changeScreen';
+import {changeScreen} from './changeScreen';
 import artist from './artist';
+import {changeableData} from './data/data';
+import changeTime from './changeTime';
 
 const screenWelcome = (text) => `
   <section class="main main--welcome">
@@ -14,6 +16,8 @@ export default (data) => {
   changeScreen(screenWelcome(data.welcome));
   const buttonPlay = document.querySelector(`.main-play`);
   buttonPlay.onclick = () => {
-    artist(data);
+    artist();
+    changeTime(changeableData);
+    window.initializeCountdown();
   };
 };

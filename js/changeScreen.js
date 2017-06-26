@@ -1,13 +1,9 @@
-const templ = (element) => {
-  const section = document.createElement(`section`);
-  section.className = `main`;
-  section.innerHTML = element;
-  return section;
-};
-
-export default (element) => {
-  const app = document.querySelector(`div.app`);
-  const main = app.querySelector(`section.main`);
-  app.removeChild(main);
-  app.prepend(templ(element));
+const app = document.querySelector(`div.app`);
+const sections = app.querySelector(`.main`);
+export const changeScreen = (element) => {
+  const section = sections.querySelector(`section.main`);
+  if (section) {
+    sections.removeChild(section);
+  }
+  sections.insertAdjacentHTML(`beforeEnd`, element);
 };
