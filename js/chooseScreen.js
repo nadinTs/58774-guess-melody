@@ -1,30 +1,25 @@
-import result from './result/result';
-import resultFail from './resultFail/resultFail';
-import artist from './artists/artists';
-import genre from './genre/genre';
 import getRandom from './getRandom';
 import {setAttempt} from './data/functions';
 import {removeTimer} from './removeTimer';
 import {changeableData} from './data/data';
-import {finishGame} from './data/functions';
-import {changeScreen} from './changeScreen';
-
-export default (data) => {
+import App from './main';
+export default () => {
+  let screen;
   const questionArr = {
-    1: artist,
-    2: genre
+    1: App.showArtists,
+    2: App.showGenre
   };
-  if (data.attempt > 0 && data.lives > 0 && data.minute !== 2 && data.seconds !== 59) {
-    changeScreen(questionArr[getRandom(2, 1)]());
+  if (changeableData.attempt > 0 && changeableData.lives > 0) {
+    screen = questionArr[getRandom(2, 1)]();
   } else {
-    if (data.attempt <= 0) {
-      changeScreen(result());
+    if (changeableData.attempt <= 0) {
+      App.showResult();
       removeTimer();
-    } else if (data.lives <= 0 || data.minute !== 2 && data.seconds !== 59) {
-      changeScreen(resultFail());
+    } else if (changeableData.lives <= 0) {
+      App.showResultFail();
       removeTimer();
     }
-    finishGame(changeableData);
   }
-  setAttempt(data);
+  setAttempt(changeableData);
+  return screen;
 };

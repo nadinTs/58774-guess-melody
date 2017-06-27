@@ -73,6 +73,9 @@ export default class GenreView extends AbstractView {
       div.onclick = changeDisabled;
     });
     btnAnswerSend.onclick = () => {
+      inputCheckArr.forEach(function (div) {
+        div.checked = false;
+      });
       this.onStart();
     };
   }

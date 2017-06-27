@@ -13,7 +13,6 @@ const changeTime = (value) => {
     clearInterval(timer);
     finishGame(changeableData);
     removeTimer();
-    changeScreen(resultFail());
   }, 123000);
 };
 export default changeTime;

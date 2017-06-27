@@ -4,9 +4,8 @@ import player from '../player';
 import {track} from '../track';
 
 const question = `Кто исполняет эту песню?`;
-
+let i = 0;
 export default class ArtistView extends AbstractView {
-
   get template() {
     return `<section class="main main--level main--level-artist">
   <div class="main-wrap">
@@ -14,8 +13,8 @@ export default class ArtistView extends AbstractView {
     <div class="player-wrapper"></div>
       <form class="main-list">  
       ${Object.keys(data.artist).map((element) => `<div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
-          <label class="main-answer" for="answer-1">
+          <input class="main-answer-r" type="radio" id="answer-${i}" name="answer" value="val-${i}" />
+          <label class="main-answer" for="answer-${i++}">
             <img class="main-answer-preview" src="">
             <span>${element}</span>
           </label>
@@ -26,12 +25,16 @@ export default class ArtistView extends AbstractView {
   }
 
   bind() {
-    const answerElementArtist = this.element.querySelector(`.main-list`);
+    const answerElementArtist = this.element.querySelectorAll(`input.main-answer-r`);
+    const answerElementArtistArr = Array.from(answerElementArtist);
     const playerWrapper = this.element.querySelector(`.player-wrapper`);
     player(playerWrapper, Object.keys(track[`a-3`]), false, true);
-    answerElementArtist.onclick = (e) => {
-      this.onStart(e);
-    };
+    const elementArtist = this;
+    answerElementArtistArr.forEach(function (div) {
+      div.onclick = function (e) {
+        elementArtist.onStart(e);
+      };
+    });
   }
 
   onStart() {
