@@ -4,8 +4,3 @@ export const createElement = (element) => {
   section.innerHTML = element;
   return section;
 };
-
-export const createHead = (element) => {
-  const div = document.createElement(`div`);
-  div.className = `main-time`;
-};
