@@ -1,5 +1,4 @@
 import {changeScreen} from './changeScreen';
-import answer from './answer';
 import {data} from './data/data';
 import {header} from './head';
 
@@ -26,6 +25,5 @@ export default () => {
     changeScreen(header());
   }
   changeScreen(screenMainLevelArtist());
-  answer();
 };
 

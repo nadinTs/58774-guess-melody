@@ -1,9 +1,8 @@
 const app = document.querySelector(`div.app`);
-const sections = app.querySelector(`.main`);
 export const changeScreen = (element) => {
-  const section = sections.querySelector(`section.main`);
+  const section = app.querySelector(`.main`);
   if (section) {
-    sections.removeChild(section);
+    app.removeChild(section);
   }
-  sections.insertAdjacentHTML(`beforeEnd`, element);
+  app.appendChild(element);
 };

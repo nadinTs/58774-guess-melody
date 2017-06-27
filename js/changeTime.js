@@ -2,7 +2,8 @@ import {setTimerSecond} from './data/functions';
 import {changeableData} from './data/data';
 import {removeTimer} from './removeTimer';
 import {finishGame} from './data/functions';
-import resultFail from './fail';
+import resultFail from './resultFail/resultFail';
+import {changeScreen} from './changeScreen';
 
 const changeTime = (value) => {
   const timer = setInterval(() => {
@@ -12,7 +13,7 @@ const changeTime = (value) => {
     clearInterval(timer);
     finishGame(changeableData);
     removeTimer();
-    resultFail();
-  }, 120000);
+    changeScreen(resultFail());
+  }, 123000);
 };
 export default changeTime;

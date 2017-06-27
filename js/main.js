@@ -1,7 +1,9 @@
-import welcome from './welcome';
-import {data} from './data/data';
+import welcome from './welcome/welcome';
+import {changeScreen} from './changeScreen';
+
 import './animate';
 import './time-format';
 import './timer.js';
 
-welcome(data);
+const element = welcome();
+changeScreen(element);
