@@ -10,7 +10,6 @@ export const data = Object.freeze({
     'Краснознаменная дивизия имени моей бабушки': null,
     'Lorde': true,
   },
-  question: `Кто исполняет эту песню?`,
   welcome: {
     title: `Угадай мелодию`,
     play: `Начать игру`,
