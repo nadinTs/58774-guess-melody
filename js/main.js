@@ -8,7 +8,6 @@ import './animate';
 import './time-format';
 import './timer.js';
 
-
 const ControllerID = {
   WELCOME: ``,
   ARTISTS: `artists`,

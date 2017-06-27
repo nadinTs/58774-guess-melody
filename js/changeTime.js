@@ -2,8 +2,6 @@ import {setTimerSecond} from './data/functions';
 import {changeableData} from './data/data';
 import {removeTimer} from './removeTimer';
 import {finishGame} from './data/functions';
-import resultFail from './resultFail/resultFail';
-import {changeScreen} from './changeScreen';
 
 const changeTime = (value) => {
   const timer = setInterval(() => {

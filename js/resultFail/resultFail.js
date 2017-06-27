@@ -2,7 +2,7 @@ import ResultFailView from './resultFail-view';
 import {changeScreen} from '../changeScreen';
 import App from '../main';
 
-export default class ResultFai {
+export default class ResultFail {
   constructor() {
     this.view = new ResultFailView();
   }
