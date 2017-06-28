@@ -119,6 +119,7 @@ export const setPercent = (statistics, data) => {
     }
     return 0;
   });
+  data.percent = setIndex(statisticsNew, data);
   return setIndex(statisticsNew, data);
 };
 export const setTimerSecond = (data, val) => {
@@ -140,3 +141,7 @@ export const finishGame = (data) => {
   data.trueAnswerArr = 0;
   data.attempt = 9;
 };
+export const setLocation = (curLoc) => {
+  history.pushState(null, null, curLoc);
+};
+

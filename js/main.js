@@ -8,11 +8,11 @@ import './animate';
 import './time-format';
 import './timer.js';
 
-const ControllerID = {
+export const ControllerID = {
   WELCOME: ``,
   ARTISTS: `artists`,
   GENRE: `genre`,
-  RESULT: `resulte`,
+  RESULT: `result`,
   RESULTFAIL: `fail`
 };
 
@@ -43,7 +43,6 @@ class App {
   init() {
     this.changeController(getControllerIDFromHash(location.hash));
   }
-
   showWelcome() {
     location.hash = ControllerID.WELCOME;
   }
@@ -60,6 +59,5 @@ class App {
     location.hash = ControllerID.RESULTFAIL;
   }
 }
-const app = new App();
+export const app = new App();
 app.init();
-export default app;

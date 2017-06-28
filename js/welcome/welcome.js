@@ -13,7 +13,6 @@ export default class Welcome {
   init() {
     changeScreen(this.view.element);
     finishGame(changeableData);
-
     this.view.onStart = () => {
       const myTimerElement = timerElement();
       changeScreen(myTimerElement);

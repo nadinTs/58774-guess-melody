@@ -1,6 +1,6 @@
 import ResultFailView from './resultFail-view';
 import {changeScreen} from '../changeScreen';
-import App from '../main';
+import {app} from '../main';
 
 export default class ResultFail {
   constructor() {
@@ -9,7 +9,7 @@ export default class ResultFail {
   init() {
     changeScreen(this.view.element);
     this.view.onStart = () => {
-      App.showWelcome();
+      app.showWelcome();
     };
   }
 }
