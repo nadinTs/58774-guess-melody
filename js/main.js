@@ -11,7 +11,9 @@ import './timer.js';
 const ControllerID = {
   WELCOME: ``,
   ARTISTS: `artists`,
-  GENRE: `genre`
+  GENRE: `genre`,
+  RESULT: `resulte`,
+  RESULTFAIL: `fail`
 };
 
 
