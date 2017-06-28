@@ -1,12 +1,15 @@
 import ResultFailView from './resultFail-view';
-import welcome from '../welcome/welcome';
 import {changeScreen} from '../changeScreen';
+import App from '../main';
 
-export default () => {
-  const myResultFailView = new ResultFailView();
-  myResultFailView.onStart = () => {
-    const element = welcome();
-    changeScreen(element);
-  };
-  return myResultFailView.element;
-};
+export default class ResultFail {
+  constructor() {
+    this.view = new ResultFailView();
+  }
+  init() {
+    changeScreen(this.view.element);
+    this.view.onStart = () => {
+      App.showWelcome();
+    };
+  }
+}

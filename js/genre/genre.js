@@ -1,11 +1,15 @@
 import GenreView from './genre-view';
-import {changeableData} from '../data/data';
 import chooseScreen from '../chooseScreen';
+import {changeScreen} from '../changeScreen';
 
-export default () => {
-  const myGenreView = new GenreView();
-  myGenreView.onStart = () => {
-    chooseScreen(changeableData);
-  };
-  return myGenreView.element;
-};
+export default class Genre {
+  constructor() {
+    this.view = new GenreView();
+  }
+  init() {
+    changeScreen(this.view.element);
+    this.view.onStart = () => {
+      chooseScreen();
+    };
+  }
+}

@@ -134,7 +134,7 @@ export const setTimerSecond = (data, val) => {
 export const finishGame = (data) => {
   data.minute = `02`;
   data.setSeconds = `00`;
-  data.lives = 2;
+  data.lives = 3;
   data.result = 0;
   data.trueAnswer = 0;
   data.trueAnswerArr = 0;
