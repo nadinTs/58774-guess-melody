@@ -11,7 +11,6 @@ export default class Result {
     const urlNew = `#result=${changeableData.seconds},${setPercent(statistics, changeableData)},${changeableData.result}`;
     setLocation(urlNew);
     this.view = new ResultView();
-    console.log();
   }
 
   init() {
