@@ -28,15 +28,15 @@ export default class ArtistView extends AbstractView {
   }
 
   bind() {
+    let correct = true;
+    let self = this;
     const answerElementArtist = this.element.querySelectorAll(`input.main-answer-r`);
     const answerElementArtistArr = Array.from(answerElementArtist);
     const playerWrapper = this.element.querySelector(`.player-wrapper`);
     player(playerWrapper, this.game.src, false, true);
-    let correct = true;
-    let self = this;
     answerElementArtistArr.forEach(function (div) {
       div.onclick = function (e) {
-        if (e.target.value !== true) {
+        if (!e.target.value) {
           correct = false;
         }
         self.onAnswer(correct);

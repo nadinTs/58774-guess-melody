@@ -1,10 +1,10 @@
 import AbstractView from '../view';
 
 export default class ResultView extends AbstractView {
-  constructor(game) {
+  constructor(answers, timer) {
     super();
-    // this.game = game;
-    // this.answers = this.game.answers;
+    this.answers = answers;
+    this.timer = timer;
   }
 
   get template() {
@@ -17,16 +17,17 @@ export default class ResultView extends AbstractView {
     return `<section class="main main--result">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
       <h2 class="title">Вы настоящий меломан!</h2>
-      <div class="main-stat">За ${statArr[0]} секунды<br>вы отгадали ${statArr[2]} мелодии</div>
+      <div class="main-stat">За ${this.timer} секунды<br>вы отгадали ${this.answers} мелодии</div>
       <span class="main-comparison">Это лучше чем у ${statArr[1]}% игроков</span>
       <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
     </section>`;
   }
 
   bind() {
+    let correct = true;
     const btnReturn = this.element.querySelector(`.main-replay`);
     btnReturn.onclick = () => {
-      this.onAnswer();
+      this.onAnswer(correct);
     };
   }
 

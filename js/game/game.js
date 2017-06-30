@@ -12,6 +12,7 @@ export default class Game {
     this.lives = 3;
     this.level = 0;
     this.correctAnswers = 0;
+    this.time = 0;
   }
 
   init() {
@@ -26,6 +27,9 @@ export default class Game {
   setTimer() {
     this.timer = new TimerView(2 * 60 * 1000);
     changeScreen(this.timer.element);
+    this.time = setInterval(() => {
+      this.seconds++;
+    }, 1000);
     this.timer.onTimeout = () => {
       removeTimer();
       app.showResultFail();
@@ -39,7 +43,7 @@ export default class Game {
     const view = new ArtistView(this.game[this.level]);
     view.onAnswer = (correct) => {
       if (correct) {
-        this.correctAnswers++;
+        this.correctAnswers += 1;
       } else {
         this.lives--;
       }
@@ -62,7 +66,7 @@ export default class Game {
   }
 
   setResult() {
-    const view = new ResultView();
+    const view = new ResultView(this.correctAnswers, this.time);
     view.onAnswer = () => {
       app.showWelcome();
     };
@@ -71,13 +75,13 @@ export default class Game {
 
   nextLevel() {
     if (this.level < 10 && this.lives > 0) {
-      this.level++;
       const question = this.game[this.level];
       if (question.type === `artist`) {
         this.artistLevel();
       } else if (question.type === `genre`) {
         this.genreLevel();
       }
+      this.level++;
     } else {
       if (this.level >= 10) {
         this.setResult();

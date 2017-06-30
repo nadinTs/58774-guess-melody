@@ -41,7 +41,6 @@ export default class TimerView extends AbstractView {
       this.onTimeout();
     }, this.timeout);
   }
-
   onTimeout() {
   }
 }

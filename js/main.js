@@ -1,8 +1,5 @@
 import Welcome from './welcome/welcome';
 import Game from './game/game';
-// import Artists from './artists/artists';
-// import Genre from './genre/genre';
-import Result from './result/result';
 import ResultFail from './resultFail/resultFail';
 import Model from './model';
 
@@ -13,9 +10,6 @@ import './timer.js';
 export const ControllerID = {
   WELCOME: ``,
   GAME: `game`,
-  // ARTISTS: `artists`,
-  // GENRE: `genre`,
-  RESULT: `result`,
   RESULTFAIL: `fail`
 };
 
@@ -32,7 +26,7 @@ class App {
       }
 
       get urlWrite() {
-        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats`;
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:username`;
       }
     }();
 
@@ -46,9 +40,6 @@ class App {
     this.routes = {
       [ControllerID.WELCOME]: new Welcome(),
       [ControllerID.GAME]: new Game(data),
-      // [ControllerID.ARTISTS]: new Artists(data),
-      // [ControllerID.GENRE]: new Genre(data),
-      [ControllerID.RESULT]: new Result(data),
       [ControllerID.RESULTFAIL]: new ResultFail()
     };
 
