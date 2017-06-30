@@ -11,7 +11,6 @@ export default class Genre {
   }
   init() {
     changeScreen(this.view.element);
-    console.log(`attempt`, changeableData.attempt);
     this.view = new GenreView(this.game[changeableData.attempt]);
 
     this.view.onStart = () => {

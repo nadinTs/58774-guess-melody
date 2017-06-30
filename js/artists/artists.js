@@ -12,7 +12,6 @@ export default class Artist {
 
   init() {
     changeScreen(this.view.element);
-    console.log(`attempt`, changeableData.attempt);
 
     this.view = new ArtistView(this.game[changeableData.attempt]);
 
