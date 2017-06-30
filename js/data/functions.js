@@ -9,7 +9,6 @@ export const setLives = (data, lives) => {
   return newData.lives;
 };
 export const setResult = (data, value) => {
-  // debugger;
   if (value < 0) {
     throw new RangeError(`Can't set negative results`);
   }
@@ -64,24 +63,20 @@ export const setAttempt = (data) => {
     data.attempt = 9;
   }
 };
-export const setTrueAnswer = (element, data, track) => {
+export const setTrueAnswer = (element, answer, right) => {
   let dataNew = 0;
   if (element === true) {
-    Object.values(track).map((elem) => {
-      if (elem === true) {
-        dataNew += 1;
-      } else {
-        dataNew -= 1;
-      }
-    });
+    if (answer === right) {
+      dataNew += 1;
+    } else {
+      dataNew -= 1;
+    }
   } else {
-    Object.values(track).map((elem) => {
-      if (elem === true) {
-        dataNew -= 1;
-      } else {
-        dataNew += 1;
-      }
-    });
+    if (answer === right) {
+      dataNew -= 1;
+    } else {
+      dataNew += 1;
+    }
   }
   return dataNew;
 };

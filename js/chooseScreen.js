@@ -1,17 +1,16 @@
-import getRandom from './getRandom';
 import {setAttempt} from './data/functions';
 import {removeTimer} from './removeTimer';
 import {changeableData} from './data/data';
 import {app} from './main';
-
-export default () => {
-  let screen;
-  const questionArr = {
-    1: app.showArtists,
-    2: app.showGenre
-  };
+export default (game) => {
+  // debugger;
   if (changeableData.attempt > 0 && changeableData.lives > 0) {
-    screen = questionArr[getRandom(2, 1)]();
+    let level = game[changeableData.attempt].type;
+    if (level === `artist`) {
+      app.showArtists();
+    } else if (level === `genre`) {
+      app.showGenre();
+    }
   } else {
     if (changeableData.attempt <= 0) {
       app.showResult();
@@ -22,5 +21,4 @@ export default () => {
     }
   }
   setAttempt(changeableData);
-  return screen;
 };
