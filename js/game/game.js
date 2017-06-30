@@ -1,5 +1,6 @@
 import GenreView from './genre-view';
 import ArtistView from './artist-view';
+import ResultView from './resulte-view';
 import TimerView from './timer-view';
 import {app} from '../main';
 import {removeTimer} from '../removeTimer';
@@ -17,6 +18,7 @@ export default class Game {
     this.lives = 3;
     this.level = 0;
     this.correctAnswers = 0;
+    this.setResult();
     this.setTimer();
     this.nextLevel();
   }
@@ -59,6 +61,14 @@ export default class Game {
     changeScreen(view.element);
   }
 
+  setResult() {
+    const view = new ResultView();
+    view.onAnswer = () => {
+      app.showWelcome();
+    };
+    changeScreen(view.element);
+  }
+
   nextLevel() {
     if (this.level < 10 && this.lives > 0) {
       this.level++;
@@ -70,7 +80,7 @@ export default class Game {
       }
     } else {
       if (this.level >= 10) {
-        app.showResult();
+        this.setResult();
         removeTimer();
       } else if (this.lives <= 0) {
         app.showResultFail();

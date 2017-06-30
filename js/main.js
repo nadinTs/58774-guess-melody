@@ -66,14 +66,6 @@ class App {
     location.hash = ControllerID.WELCOME;
   }
 
-  // showArtists() {
-  //   location.hash = ControllerID.ARTISTS;
-  // }
-  //
-  // showGenre() {
-  //   location.hash = ControllerID.GENRE;
-  // }
-
   showGame() {
     location.hash = ControllerID.GAME;
   }
