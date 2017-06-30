@@ -14,15 +14,14 @@ export class DefaultAdapter {
   }
 }
 
-const defaultAdapter = new class extends DefaultAdapter {
-}();
+const defaultAdapter = new class extends DefaultAdapter {}();
 
 export default class Model {
   get urlRead() {
     throw new Error(`Abstract method. Define the URL for model.`);
   }
 
-  get urlWrite() {
+  set urlWrite(url) {
     throw new Error(`Abstract method. Define the URL for model.`);
   }
 
@@ -41,7 +40,6 @@ export default class Model {
       method: `POST`
     };
 
-    return fetch(this.urlWrite, requestSettings)
-      .then(this.onUpload);
+    return fetch(`https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`, requestSettings);
   }
 }

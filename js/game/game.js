@@ -5,6 +5,7 @@ import TimerView from './timer-view';
 import {app} from '../main';
 import {removeTimer} from '../removeTimer';
 import {changeScreen} from '../changeScreen';
+import Model from '../model';
 
 export default class Game {
   constructor(game) {
@@ -13,15 +14,35 @@ export default class Game {
     this.level = 0;
     this.correctAnswers = 0;
     this.time = 0;
+    this.model = new Model();
+    this.statsData = {};
+    this.staticModel = new class extends Model {
+      get urlRead() {
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
+      }
+    }();
+
+    this.staticModel.load()
+      .then((data) => this.init(data))
+      .catch(window.console.error);
   }
 
-  init() {
+  init(resp) {
+    this.response = resp;
     this.lives = 3;
     this.level = 0;
     this.correctAnswers = 0;
     this.setResult();
     this.setTimer();
     this.nextLevel();
+  }
+
+  setStats() {
+    this.statsData = {
+      time: this.time,
+      answers: this.correctAnswers
+    };
+    this.model.send(JSON.stringify(this.statsData));
   }
 
   setTimer() {
@@ -32,11 +53,10 @@ export default class Game {
     }, 1000);
     this.timer.onTimeout = () => {
       removeTimer();
+      clearInterval(this.time);
       app.showResultFail();
     };
-
     window.initializeCountdown();
-
   }
 
   artistLevel() {
@@ -66,10 +86,11 @@ export default class Game {
   }
 
   setResult() {
-    const view = new ResultView(this.correctAnswers, this.time);
+    const view = new ResultView(this.correctAnswers, this.time, this.response);
     view.onAnswer = () => {
       app.showWelcome();
     };
+    clearInterval(this.time);
     changeScreen(view.element);
   }
 
@@ -90,6 +111,8 @@ export default class Game {
         app.showResultFail();
         removeTimer();
       }
+      app.model.load();
+      this.setStats();
     }
   }
 }

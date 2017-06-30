@@ -91,11 +91,11 @@ const setIndex = (arr, data) => {
     }
     return false;
   });
-  return Math.round(((lenght - index) / lenght) * 100);
+  return Math.round(((lenght - (index + 1)) / lenght) * 100);
 };
 export const setPercent = (statistics, data) => {
   const statisticsNew = statistics;
-  statisticsNew.push({answers: data.result, time: data.minute});
+  statisticsNew.push({answers: data.answers, time: data.time});
   statisticsNew.sort((a, b) => {
     if (a.time > b.time) {
       return 1;

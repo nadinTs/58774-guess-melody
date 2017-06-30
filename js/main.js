@@ -13,9 +13,7 @@ export const ControllerID = {
   RESULTFAIL: `fail`
 };
 
-
-const getControllerIDFromHash = (hash) => hash.replace(`#`, ``);
-
+export const getControllerIDFromHash = (hash) => hash.replace(`#`, ``);
 
 class App {
   constructor() {
@@ -26,7 +24,7 @@ class App {
       }
 
       get urlWrite() {
-        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:username`;
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774NadyaTs`;
       }
     }();
 
@@ -34,13 +32,14 @@ class App {
       .then((data) => this.setup(data))
       .then(() => this.changeController(getControllerIDFromHash(location.hash)))
       .catch(window.console.error);
+
   }
 
   setup(data) {
     this.routes = {
       [ControllerID.WELCOME]: new Welcome(),
       [ControllerID.GAME]: new Game(data),
-      [ControllerID.RESULTFAIL]: new ResultFail()
+      [ControllerID.RESULTFAIL]: new ResultFail(),
     };
 
     window.onhashchange = () => {

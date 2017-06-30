@@ -1,7 +1,6 @@
 import AbstractView from '../view';
 import player from '../player';
 
-
 export default class GenreView extends AbstractView {
   constructor(game) {
     super();
