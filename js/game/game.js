@@ -14,6 +14,7 @@ export default class Game {
   }
 
   init() {
+    this.lives = 3;
     this.setTimer();
     this.nextLevel();
   }
