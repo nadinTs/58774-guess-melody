@@ -8,6 +8,7 @@ export default class ArtistView extends AbstractView {
     this.game = game;
     this.answers = this.game.answers;
   }
+
   get template() {
     return `<section class="main main--level main--level-artist">
       <div class="main-wrap">
@@ -31,15 +32,18 @@ export default class ArtistView extends AbstractView {
     const answerElementArtistArr = Array.from(answerElementArtist);
     const playerWrapper = this.element.querySelector(`.player-wrapper`);
     player(playerWrapper, this.game.src, false, true);
-    const elementArtist = this;
+    let correct = true;
+    let self = this;
     answerElementArtistArr.forEach(function (div) {
       div.onclick = function (e) {
-        elementArtist.onStart(e.target.value === true);
+        if (e.target.value !== true) {
+          correct = false;
+        }
+        self.onAnswer(correct);
       };
     });
   }
 
-  onStart() {
-
+  onAnswer(correct) {
   }
 }

@@ -15,6 +15,8 @@ export default class Game {
 
   init() {
     this.lives = 3;
+    this.level = 0;
+    this.correctAnswers = 0;
     this.setTimer();
     this.nextLevel();
   }
@@ -33,7 +35,12 @@ export default class Game {
 
   artistLevel() {
     const view = new ArtistView(this.game[this.level]);
-    view.onStart = () => {
+    view.onAnswer = (correct) => {
+      if (correct) {
+        this.correctAnswers++;
+      } else {
+        this.lives--;
+      }
       this.nextLevel();
     };
     changeScreen(view.element);

@@ -5,7 +5,6 @@ import {changeableData} from '../data/data';
 
 export default class Genre {
   constructor(game) {
-    // debugger;
     this.game = game;
     this.view = new GenreView(this.game[changeableData.attempt]);
   }
