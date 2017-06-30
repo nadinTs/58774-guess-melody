@@ -1,12 +1,9 @@
 import AbstractView from '../view';
-import {changeableData} from '../data/data';
 import player from '../player';
-import {setTrueAnswer, setLives, setResult} from '../data/functions';
 
 
 export default class GenreView extends AbstractView {
   constructor(game) {
-    // debugger;
     super();
     this.game = game;
     this.answers = this.game.answers;
@@ -17,7 +14,7 @@ export default class GenreView extends AbstractView {
       <h2 class="title">${this.game.question}</h2>
       <form class="genre" style="position: relative; z-index: 1000;">
         ${this.answers.map((answer) => `<div class="genre-answer">
-          <div class="player-wrapper"></div>
+          <div class="player-wrapper" data-src="${answer.src}"></div>
           <input type="checkbox" name="answer" value="${answer.genre}" id="${answer.src}">
           <label class="genre-answer-check" for="${answer.src}"></label>
           </div>`).join(``)}
@@ -27,60 +24,48 @@ export default class GenreView extends AbstractView {
   }
 
   bind() {
-    let j = 0;
-    const box = this.element.querySelectorAll(`.player-wrapper`);
+    const players = this.element.querySelectorAll(`.player-wrapper`);
     const btnAnswerSend = this.element.querySelector(`button.genre-answer-send`);
-    const boxArr = Array.from(box);
     const inputCheck = this.element.querySelectorAll(`.genre-answer input`);
-    const inputCheckArr = Array.from(inputCheck);
-    const genre = this.game.genre;
+
+    const playerArr = Array.from(players);
+    playerArr.forEach(function (playerElement) {
+      player(playerElement, playerElement.getAttribute(`data-src`), false, true);
+    });
+
     btnAnswerSend.setAttribute(`disabled`, `disabled`);
-    changeableData.trueAnswerArr = 0;
-    boxArr.forEach(function (div) {
-      let input = div.parentNode.querySelector(`input`);
-      player(div, input.id, false, true);
-      if (input.value === genre) {
-        changeableData.trueAnswerArr += 1;
-      }
-    });
-    inputCheckArr.forEach(function (div) {
-      div.checked = false;
-      btnAnswerSend.setAttribute(`disabled`, `disabled`);
-      j = 0;
-    });
-    if (changeableData.trueAnswer !== changeableData.trueAnswerArr) {
-      changeableData.lives = setLives(changeableData);
-    } else {
-      changeableData.result = setResult(changeableData);
-    }
-    changeableData.trueAnswer = 0;
 
-    const changeDisabled = (e) => {
-      if (e.target.checked) {
-        j++;
-      } else {
-        j--;
-      }
-      if (j > 0) {
-        btnAnswerSend.removeAttribute(`disabled`);
-      } else {
-        btnAnswerSend.setAttribute(`disabled`, `disabled`);
-      }
-      const check = e.target.checked;
-      changeableData.trueAnswer += setTrueAnswer(check, genre, e.target.value);
-    };
-
-    inputCheckArr.forEach(function (div) {
-      div.onclick = changeDisabled;
+    let j = 0;
+    const inputCheckArr = Array.from(inputCheck);
+    inputCheckArr.forEach(function (input) {
+      input.onclick = (e) => {
+        if (e.target.checked) {
+          j++;
+        } else {
+          j--;
+        }
+        if (j > 0) {
+          btnAnswerSend.removeAttribute(`disabled`);
+        } else {
+          btnAnswerSend.setAttribute(`disabled`, `disabled`);
+        }
+      };
     });
+
     btnAnswerSend.onclick = () => {
-      inputCheckArr.forEach(function (div) {
-        div.checked = false;
+      let correct = true;
+      let self = this;
+      inputCheckArr.forEach(function (input) {
+        if (input.value === self.game.genre && !input.checked) {
+          correct = false;
+        } else if (input.value !== self.game.genre && input.checked) {
+          correct = false;
+        }
       });
-      this.onStart();
+      this.onAnswer(correct);
     };
   }
 
-  onStart() {
+  onAnswer(correct) {
   }
 }

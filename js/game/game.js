@@ -7,7 +7,6 @@ import {changeScreen} from '../changeScreen';
 
 export default class Game {
   constructor(game) {
-    // debugger;
     this.game = game;
     this.lives = 3;
     this.level = 0;
@@ -41,7 +40,12 @@ export default class Game {
 
   genreLevel() {
     const view = new GenreView(this.game[this.level]);
-    view.onStart = () => {
+    view.onAnswer = (correct) => {
+      if (correct) {
+        this.correctAnswers++;
+      } else {
+        this.lives--;
+      }
       this.nextLevel();
     };
     changeScreen(view.element);
