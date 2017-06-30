@@ -21,20 +21,23 @@ export default class Game {
         return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
       }
     }();
-
-    this.staticModel.load()
-      .then((data) => this.init(data))
-      .catch(window.console.error);
   }
 
-  init(resp) {
-    this.response = resp;
+  init() {
     this.lives = 3;
     this.level = 0;
     this.correctAnswers = 0;
-    this.setResult();
     this.setTimer();
     this.nextLevel();
+
+    let self = this;
+
+    this.staticModel.load()
+      .then((data) => {
+        self.statsData = data;
+      })
+      .catch(window.console.error);
+
   }
 
   setStats() {
@@ -86,7 +89,7 @@ export default class Game {
   }
 
   setResult() {
-    const view = new ResultView(this.correctAnswers, this.time, this.response);
+    const view = new ResultView(this.correctAnswers, this.time, this.statsData);
     view.onAnswer = () => {
       app.showWelcome();
     };

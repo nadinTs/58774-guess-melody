@@ -24,7 +24,7 @@ class App {
       }
 
       get urlWrite() {
-        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774NadyaTs`;
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
       }
     }();
 
