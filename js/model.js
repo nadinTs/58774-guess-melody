@@ -21,7 +21,7 @@ export default class Model {
     throw new Error(`Abstract method. Define the URL for model.`);
   }
 
-  set urlWrite(url) {
+  get urlWrite() {
     throw new Error(`Abstract method. Define the URL for model.`);
   }
 
@@ -40,6 +40,6 @@ export default class Model {
       method: `POST`
     };
 
-    return fetch(`https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`, requestSettings);
+    return fetch(this.urlWrite, requestSettings);
   }
 }

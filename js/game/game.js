@@ -8,16 +8,19 @@ import {changeScreen} from '../changeScreen';
 import Model from '../model';
 
 export default class Game {
-  constructor(game) {
-    this.game = game;
-    this.lives = 3;
-    this.level = 0;
-    this.correctAnswers = 0;
-    this.time = 0;
-    this.model = new Model();
-    this.statsData = {};
-    this.staticModel = new class extends Model {
+  constructor() {
+    this.model = new class extends Model {
       get urlRead() {
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/questions`;
+      }
+    }();
+
+    this.statsModel = new class extends Model {
+      get urlRead() {
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
+      }
+
+      get urlWrite() {
         return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
       }
     }();
@@ -29,31 +32,29 @@ export default class Game {
     this.correctAnswers = 0;
     this.setTimer();
     this.nextLevel();
-
     let self = this;
-
-    this.staticModel.load()
+    this.statsModel.load()
       .then((data) => {
         self.statsData = data;
       })
       .catch(window.console.error);
-
   }
 
-  setStats() {
+  sendStats() {
     this.statsData = {
-      time: this.time,
+      time: this.timer.seconds,
       answers: this.correctAnswers
     };
-    this.model.send(JSON.stringify(this.statsData));
+    this.statsModel.send(JSON.stringify(this.statsData));
+  }
+
+  loadData() {
+    app.model.load();
   }
 
   setTimer() {
     this.timer = new TimerView(2 * 60 * 1000);
     changeScreen(this.timer.element);
-    this.time = setInterval(() => {
-      this.seconds++;
-    }, 1000);
     this.timer.onTimeout = () => {
       removeTimer();
       clearInterval(this.time);
@@ -89,12 +90,12 @@ export default class Game {
   }
 
   setResult() {
-    const view = new ResultView(this.correctAnswers, this.time, this.statsData);
+    const view = new ResultView(this.correctAnswers, this.timer.seconds, this.statsData);
     view.onAnswer = () => {
       app.showWelcome();
     };
-    clearInterval(this.time);
     changeScreen(view.element);
+    this.sendStats();
   }
 
   nextLevel() {
@@ -114,8 +115,6 @@ export default class Game {
         app.showResultFail();
         removeTimer();
       }
-      app.model.load();
-      this.setStats();
     }
   }
 }

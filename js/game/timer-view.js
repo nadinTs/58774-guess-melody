@@ -4,6 +4,7 @@ export default class TimerView extends AbstractView {
   constructor(timeout) {
     super();
     this.timeout = timeout;
+    this.seconds = 0;
   }
 
   get tagName() {
@@ -31,6 +32,15 @@ export default class TimerView extends AbstractView {
   }
 
   bind() {
+    const self = this;
+    this.timer = setInterval(() => {
+      self.seconds++;
+    }, 1000);
+
+    this.timeout = setTimeout(() => {
+      clearInterval(this.timer);
+      this.onTimeout();
+    }, this.timeout);
   }
   onTimeout() {
   }

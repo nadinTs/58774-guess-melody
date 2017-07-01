@@ -86,7 +86,7 @@ const setIndex = (arr, data) => {
     lenght += 1;
   });
   const index = arr.findIndex((div) => {
-    if (div.time === data.minute && div.answers === data.result) {
+    if (div.time === data.time && div.answers === data.answers) {
       return div;
     }
     return false;

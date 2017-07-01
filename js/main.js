@@ -32,7 +32,6 @@ class App {
       .then((data) => this.setup(data))
       .then(() => this.changeController(getControllerIDFromHash(location.hash)))
       .catch(window.console.error);
-
   }
 
   setup(data) {
@@ -58,10 +57,6 @@ class App {
 
   showGame() {
     location.hash = ControllerID.GAME;
-  }
-
-  showResult() {
-    location.hash = ControllerID.RESULT;
   }
 
   showResultFail() {
