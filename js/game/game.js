@@ -8,13 +8,14 @@ import {changeScreen} from '../changeScreen';
 import Model from '../model';
 
 export default class Game {
-  constructor() {
-    this.model = new class extends Model {
-      get urlRead() {
-        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/questions`;
-      }
-    }();
-
+  constructor(game) {
+    this.game = game;
+    this.lives = 3;
+    this.level = 0;
+    this.correctAnswers = 0;
+    this.time = 0;
+    this.model = new Model();
+    this.statsData = {};
     this.statsModel = new class extends Model {
       get urlRead() {
         return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
@@ -46,10 +47,6 @@ export default class Game {
       answers: this.correctAnswers
     };
     this.statsModel.send(JSON.stringify(this.statsData));
-  }
-
-  loadData() {
-    app.model.load();
   }
 
   setTimer() {
