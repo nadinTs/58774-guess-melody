@@ -1,8 +1,7 @@
 import Welcome from './welcome/welcome';
-import Artists from './artists/artists';
-import Genre from './genre/genre';
-import Result from './result/result';
+import Game from './game/game';
 import ResultFail from './resultFail/resultFail';
+import Model from './model';
 
 import './animate';
 import './time-format';
@@ -10,54 +9,58 @@ import './timer.js';
 
 export const ControllerID = {
   WELCOME: ``,
-  ARTISTS: `artists`,
-  GENRE: `genre`,
-  RESULT: `result`,
+  GAME: `game`,
   RESULTFAIL: `fail`
 };
 
-
-const getControllerIDFromHash = (hash) => hash.replace(`#`, ``);
-
+export const getControllerIDFromHash = (hash) => hash.replace(`#`, ``);
 
 class App {
   constructor() {
+
+    this.model = new class extends Model {
+      get urlRead() {
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/questions`;
+      }
+
+      get urlWrite() {
+        return `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody/stats/:id58774`;
+      }
+    }();
+
+    this.model.load()
+      .then((data) => this.setup(data))
+      .then(() => this.changeController(getControllerIDFromHash(location.hash)))
+      .catch(window.console.error);
+  }
+
+  setup(data) {
     this.routes = {
-      [ControllerID.WELCOME]: Welcome,
-      [ControllerID.ARTISTS]: Artists,
-      [ControllerID.GENRE]: Genre,
-      [ControllerID.RESULT]: Result,
-      [ControllerID.RESULTFAIL]: ResultFail
+      [ControllerID.WELCOME]: new Welcome(),
+      [ControllerID.GAME]: new Game(data),
+      [ControllerID.RESULTFAIL]: new ResultFail(),
     };
 
     window.onhashchange = () => {
       this.changeController(getControllerIDFromHash(location.hash));
     };
+
   }
 
   changeController(route = ``) {
-    const Controller = this.routes[route];
-    new Controller().init();
+    this.routes[route].init();
   }
 
-  init() {
-    this.changeController(getControllerIDFromHash(location.hash));
-  }
   showWelcome() {
     location.hash = ControllerID.WELCOME;
   }
-  showArtists() {
-    location.hash = ControllerID.ARTISTS;
+
+  showGame() {
+    location.hash = ControllerID.GAME;
   }
-  showGenre() {
-    location.hash = ControllerID.GENRE;
-  }
-  showResult() {
-    location.hash = ControllerID.RESULT;
-  }
+
   showResultFail() {
     location.hash = ControllerID.RESULTFAIL;
   }
 }
 export const app = new App();
-app.init();

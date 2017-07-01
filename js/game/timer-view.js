@@ -1,9 +1,16 @@
 import AbstractView from '../view';
-export default class TimerElementView extends AbstractView {
+export default class TimerView extends AbstractView {
+
+  constructor(timeout) {
+    super();
+    this.timeout = timeout;
+    this.seconds = 0;
+  }
 
   get tagName() {
     return `div`;
   }
+
   get className() {
     return `main-time`;
   }
@@ -23,6 +30,18 @@ export default class TimerElementView extends AbstractView {
       </div>
     </div>`;
   }
-  bind() {}
-  onStart() {}
+
+  bind() {
+    const self = this;
+    this.timer = setInterval(() => {
+      self.seconds++;
+    }, 1000);
+
+    this.timeout = setTimeout(() => {
+      clearInterval(this.timer);
+      this.onTimeout();
+    }, this.timeout);
+  }
+  onTimeout() {
+  }
 }

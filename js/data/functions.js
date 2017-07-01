@@ -9,7 +9,6 @@ export const setLives = (data, lives) => {
   return newData.lives;
 };
 export const setResult = (data, value) => {
-  // debugger;
   if (value < 0) {
     throw new RangeError(`Can't set negative results`);
   }
@@ -64,24 +63,20 @@ export const setAttempt = (data) => {
     data.attempt = 9;
   }
 };
-export const setTrueAnswer = (element, data, track) => {
+export const setTrueAnswer = (element, answer, right) => {
   let dataNew = 0;
   if (element === true) {
-    Object.values(track).map((elem) => {
-      if (elem === true) {
-        dataNew += 1;
-      } else {
-        dataNew -= 1;
-      }
-    });
+    if (answer === right) {
+      dataNew += 1;
+    } else {
+      dataNew -= 1;
+    }
   } else {
-    Object.values(track).map((elem) => {
-      if (elem === true) {
-        dataNew -= 1;
-      } else {
-        dataNew += 1;
-      }
-    });
+    if (answer === right) {
+      dataNew -= 1;
+    } else {
+      dataNew += 1;
+    }
   }
   return dataNew;
 };
@@ -91,16 +86,16 @@ const setIndex = (arr, data) => {
     lenght += 1;
   });
   const index = arr.findIndex((div) => {
-    if (div.time === data.minute && div.answers === data.result) {
+    if (div.time === data.time && div.answers === data.answers) {
       return div;
     }
     return false;
   });
-  return Math.round(((lenght - index) / lenght) * 100);
+  return Math.round(((lenght - (index + 1)) / lenght) * 100);
 };
 export const setPercent = (statistics, data) => {
   const statisticsNew = statistics;
-  statisticsNew.push({answers: data.result, time: data.minute});
+  statisticsNew.push({answers: data.answers, time: data.time});
   statisticsNew.sort((a, b) => {
     if (a.time > b.time) {
       return 1;

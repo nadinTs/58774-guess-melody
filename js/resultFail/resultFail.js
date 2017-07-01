@@ -9,6 +9,7 @@ export default class ResultFail {
   init() {
     changeScreen(this.view.element);
     this.view.onStart = () => {
+      location.reload();
       app.showWelcome();
     };
   }
