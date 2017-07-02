@@ -1,7 +1,15 @@
 import assert from 'assert';
 import {changeableData} from './data';
 import {statistics} from './statistic';
-import {setTimerSecond, setLives, setMinutes, setStatisticAnswer, setStatisticTime, setSeconds, setAttemptValue, setResult} from './functions';
+import {
+  setTimerSecond,
+  setLives,
+  setStatisticAnswer,
+  setStatisticTime,
+  setSeconds,
+  setAttemptValue,
+  setResult
+} from './functions';
 
 describe(`game`, () => {
   describe(`setStatisticAnswer`, () => {
@@ -29,17 +37,6 @@ describe(`game`, () => {
     });
     it(`should have 0 minutes on start`, () => {
       assert.equal(changeableData.seconds, 0);
-    });
-  });
-  describe(`setMinutes`, () => {
-    it(`should update minutes`, () => {
-      assert(1, setMinutes(changeableData, 1).minute);
-    });
-    it(`should't allow set negative minutes`, () => {
-      setMinutes(changeableData.minute, 1);
-    });
-    it(`should have 0 minutes on start`, () => {
-      assert.equal(changeableData.minute, 0);
     });
   });
   describe(`setLives`, () => {
