@@ -3,7 +3,7 @@ export default class TimerView extends AbstractView {
 
   constructor(timeout) {
     super();
-    this.timeout = timeout;
+    this.timeoutMs = timeout;
     this.seconds = 0;
   }
 
@@ -38,10 +38,16 @@ export default class TimerView extends AbstractView {
     }, 1000);
 
     this.timeout = setTimeout(() => {
-      clearInterval(this.timer);
+      this.stopTimer();
       this.onTimeout();
-    }, this.timeout);
+    }, this.timeoutMs);
   }
   onTimeout() {
+  }
+  stopTimer() {
+    clearInterval(this.timer);
+  }
+  stopTimeout() {
+    clearTimeout(this.timeout);
   }
 }

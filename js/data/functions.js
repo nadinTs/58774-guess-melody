@@ -16,14 +16,6 @@ export const setResult = (data, value) => {
   newData.result += 1;
   return newData.result;
 };
-export const setMinutes = (game, minute) => {
-  if (minute < 0) {
-    throw new RangeError(`Can't set negative minute`);
-  }
-  const newGame = Object.assign({}, game);
-  newGame.minute = minute;
-  return newGame;
-};
 export const setSeconds = (game, seconds) => {
   if (seconds < 0) {
     throw new RangeError(`Can't set negative seconds`);
