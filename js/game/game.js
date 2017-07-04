@@ -52,9 +52,10 @@ export default class Game {
   setTimer() {
     this.timer = new TimerView(2 * 60 * 1000);
     changeScreen(this.timer.element);
+    const self = this;
     this.timer.onTimeout = () => {
       removeTimer();
-      clearInterval(this.time);
+      self.timer.stopTimer();
       app.showResultFail();
     };
     window.initializeCountdown();
@@ -106,9 +107,13 @@ export default class Game {
       this.level++;
     } else {
       if (this.level >= 10) {
+        this.timer.stopTimer();
+        this.timer.stopTimeout();
         this.setResult();
         removeTimer();
       } else if (this.lives <= 0) {
+        this.timer.stopTimer();
+        this.timer.stopTimeout();
         app.showResultFail();
         removeTimer();
       }
