@@ -89,7 +89,6 @@ export default class Game {
   setResult() {
     const view = new ResultView(this.correctAnswers, this.timer.seconds, this.statsData);
     view.onAnswer = () => {
-      location.reload();
       app.showWelcome();
     };
     changeScreen(view.element);
