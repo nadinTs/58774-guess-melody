@@ -1,7 +1,6 @@
 import AbstractView from '../view';
 import player from '../player';
 
-let i = 0;
 export default class ArtistView extends AbstractView {
   constructor(game) {
     super();
@@ -15,9 +14,9 @@ export default class ArtistView extends AbstractView {
         <h2 class="title main-title">${this.game.question}</h2>
         <div class="player-wrapper"></div>
           <form class="main-list">  
-            ${this.answers.map((element) => `<div class="main-answer-wrapper">
-              <input class="main-answer-r" type="radio" id="answer-${i}" name="answer" value="${element.isCorrect}" />
-              <label class="main-answer" for="answer-${i++}">
+            ${this.answers.map((element, index) => `<div class="main-answer-wrapper">
+              <input class="main-answer-r" type="radio" id="answer-${index}" name="answer" value="${element.isCorrect}" />
+              <label class="main-answer" for="answer-${index}">
                 <img class="main-answer-preview" src="${element.image.url}" width="${element.image.width}" height="${element.image.height}">
                 <span>${element.title}</span>
               </label>

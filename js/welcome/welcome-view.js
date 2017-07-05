@@ -10,19 +10,25 @@ export default class WelcomeView extends AbstractView {
   get template() {
     return `<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>${title}</h1></section>
-    <button class="main-play">${play}</button>
     <h2 class="title main-title">${rulesTitle}</h2>
     <p class="text main-text">${rulesText}
     </p>
   </section>`;
   }
 
-  bind() {
-    const buttonPlay = this.element.querySelector(`.main-play`);
-    buttonPlay.onclick = () => {
+  addButton(enable = true) {
+    const section = this.element.querySelector(`.main--welcome`);
+    const mainTitle = this.element.querySelector(`.main-title`);
+    const button = document.createElement(`button`);
+    button.className = `main-play`;
+    button.innerText = play;
+    section.insertBefore(button, mainTitle);
+    button.onclick = () => {
       this.onStart();
     };
+
   }
+
   onStart() {
   }
 }

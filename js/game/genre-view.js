@@ -12,10 +12,10 @@ export default class GenreView extends AbstractView {
     return `<section class="main main--level main--level-genre">
       <h2 class="title">${this.game.question}</h2>
       <form class="genre" style="position: relative; z-index: 1000;">
-        ${this.answers.map((answer) => `<div class="genre-answer">
+        ${this.answers.map((answer, index) => `<div class="genre-answer">
           <div class="player-wrapper" data-src="${answer.src}"></div>
-          <input type="checkbox" name="answer" value="${answer.genre}" id="${answer.src}">
-          <label class="genre-answer-check" for="${answer.src}"></label>
+          <input type="checkbox" name="answer" value="${answer.genre}" id="track_${index}">
+          <label class="genre-answer-check" for="track_${index}"></label>
           </div>`).join(``)}
         <button type="button" class="genre-answer-send" type="submit">Ответить</button>
       </form>

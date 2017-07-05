@@ -36,7 +36,7 @@ class App {
 
   setup(data) {
     this.routes = {
-      [ControllerID.WELCOME]: new Welcome(),
+      [ControllerID.WELCOME]: new Welcome(data),
       [ControllerID.GAME]: new Game(data),
       [ControllerID.RESULTFAIL]: new ResultFail(),
     };
