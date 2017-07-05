@@ -35,7 +35,7 @@ export default class ArtistView extends AbstractView {
     player(playerWrapper, this.game.src, false, true);
     answerElementArtistArr.forEach(function (div) {
       div.onclick = function (e) {
-        if (!e.target.value) {
+        if (e.target.value === `false`) {
           correct = false;
         }
         self.onAnswer(correct);

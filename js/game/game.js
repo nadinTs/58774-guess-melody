@@ -64,7 +64,7 @@ export default class Game {
   artistLevel() {
     const view = new ArtistView(this.game[this.level]);
     view.onAnswer = (correct) => {
-      if (correct) {
+      if (correct === true) {
         this.correctAnswers += 1;
       } else {
         this.lives--;
@@ -77,7 +77,7 @@ export default class Game {
   genreLevel() {
     const view = new GenreView(this.game[this.level]);
     view.onAnswer = (correct) => {
-      if (correct) {
+      if (correct === true) {
         this.correctAnswers++;
       } else {
         this.lives--;
@@ -97,7 +97,7 @@ export default class Game {
   }
 
   nextLevel() {
-    if (this.level < 10 && this.lives > 0) {
+    if (this.level < 10 && this.lives > 1) {
       const question = this.game[this.level];
       if (question.type === `artist`) {
         this.artistLevel();
@@ -111,7 +111,7 @@ export default class Game {
         this.timer.stopTimeout();
         this.setResult();
         removeTimer();
-      } else if (this.lives <= 0) {
+      } else if (this.lives <= 1) {
         this.timer.stopTimer();
         this.timer.stopTimeout();
         app.showResultFail();
