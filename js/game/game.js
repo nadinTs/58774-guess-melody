@@ -97,7 +97,7 @@ export default class Game {
   }
 
   nextLevel() {
-    if (this.level < 10 && this.lives > 1) {
+    if (this.level < 10 && this.lives > 0) {
       const question = this.game[this.level];
       if (question.type === `artist`) {
         this.artistLevel();
@@ -111,7 +111,7 @@ export default class Game {
         this.timer.stopTimeout();
         this.setResult();
         removeTimer();
-      } else if (this.lives <= 1) {
+      } else if (this.lives <= 0) {
         this.timer.stopTimer();
         this.timer.stopTimeout();
         app.showResultFail();

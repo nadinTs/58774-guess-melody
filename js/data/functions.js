@@ -85,29 +85,36 @@ const setIndex = (arr, data) => {
   });
   return Math.round(((lenght - (index + 1)) / lenght) * 100);
 };
-export const setPercent = (statistics, data) => {
+export const setPercent = function (statistics, data) {
   const statisticsNew = statistics;
-  statisticsNew.push({answers: data.answers, time: data.time});
-  statisticsNew.sort((a, b) => {
-    if (a.time > b.time) {
-      return 1;
-    }
-    if (a.time < b.time) {
-      return -1;
-    }
-    return 0;
-  });
-  statisticsNew.sort((a, b) => {
-    if (a.answers < b.answers) {
-      return 1;
-    }
-    if (a.answers > b.answers) {
-      return -1;
-    }
-    return 0;
-  });
-  data.percent = setIndex(statisticsNew, data);
-  return setIndex(statisticsNew, data);
+  let percentResult = 0;
+
+  if (Object.keys(statistics).length) {
+    statisticsNew.push({answers: data.answers, time: data.time});
+    statisticsNew.sort((a, b) => {
+      if (a.time > b.time) {
+        return 1;
+      }
+      if (a.time < b.time) {
+        return -1;
+      }
+      return 0;
+    });
+    statisticsNew.sort((a, b) => {
+      if (a.answers < b.answers) {
+        return 1;
+      }
+      if (a.answers > b.answers) {
+        return -1;
+      }
+      return 0;
+    });
+    data.percent = setIndex(statisticsNew, data);
+    percentResult = setIndex(statisticsNew, data);
+  } else {
+    percentResult = 100;
+  }
+  return percentResult;
 };
 export const setTimerSecond = (data, val) => {
   if (val < 0) {
